@@ -74,13 +74,13 @@ Indentation matters. Be sure the indent of the code block aligns with the first 
 1. Do step 1.
 2. Now do this:
 
-```ruby
-def print_hi(name)
-puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-```
+    ```ruby
+    def print_hi(name)
+    puts "Hi, #{name}"
+    end
+    print_hi('Tom')
+    #=> prints 'Hi, Tom' to STDOUT.
+    ```
 
 3. Now you can do this.
 
