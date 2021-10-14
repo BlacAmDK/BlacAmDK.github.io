@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>FFmpeg转码常用操作 - BlacAmDK&#x27;s Blog</title>
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="favicon.svg">
+                        <link rel="shortcut icon" href="favicon.png">
+                <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+                <link rel="stylesheet" href="css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Emacs_dired.html"><strong aria-hidden="true">2.</strong> Emacs的文件管理器</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 数据结构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Heap_Sort.html"><strong aria-hidden="true">3.1.</strong> 堆</a></li><li class="chapter-item expanded "><a href="Binary_Search_Trees.html"><strong aria-hidden="true">3.2.</strong> 二叉搜索树</a></li><li class="chapter-item expanded "><a href="AVL_Tree.html"><strong aria-hidden="true">3.3.</strong> AVL树</a></li></ol></li><li class="chapter-item expanded "><a href="ffmpeg_convert.html" class="active"><strong aria-hidden="true">4.</strong> FFmpeg转码常用操作</a></li><li class="chapter-item expanded "><a href="VIM_Keybinding.html"><strong aria-hidden="true">5.</strong> VIM快捷键</a></li><li class="chapter-item expanded "><a href="Android_Modify_SharedPreferences.html"><strong aria-hidden="true">6.</strong> Android元气骑士修改存档解锁人物</a></li><li class="chapter-item expanded "><a href="Relaying-UDP-Broadcases.html"><strong aria-hidden="true">7.</strong> Relaying UDP broadcasts</a></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">BlacAmDK&#x27;s Blog</h1>
+
+                    <div class="right-buttons">
+                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="ffmpeg转码常用操作"><a class="header" href="#ffmpeg转码常用操作">FFmpeg转码常用操作</a></h1>
+<h2 id="简介sup-classfootnote-referencea-href11asup"><a class="header" href="#简介sup-classfootnote-referencea-href11asup">简介<sup class="footnote-reference"><a href="#1">1</a></sup></a></h2>
+<p>FFmpeg 是一个自由软件，可以运行音频和视频多种格式的录影、转换、流功能，包含了libavcodec——这是一个用于多个项目中音频和视频的解码器库，以及libavformat——一个音频与视频格式转换库。 “FFmpeg”这个单词中的“FF”指的是“Fast Forward”。</p>
+<h2 id="基本转换sup-classfootnote-referencea-href22asup"><a class="header" href="#基本转换sup-classfootnote-referencea-href22asup">基本转换<sup class="footnote-reference"><a href="#2">2</a></sup></a></h2>
+<p>FFmpeg的默认设置相当聪明，通常它会自动选择正确的编解码器和容器而无需任何复杂的配置。</p>
+<p>例如，假设您有一个MP3文件并希望将其转换为OGG文件:</p>
+<pre><code>ffmpeg -i input.mp3 output.ogg
+</code></pre>
+<p>此命令采用名为input.mp3的MP3文件，并将其转换为名为output.ogg的OGG文件。从FFmpeg的角度来看，这意味着将MP3音频流转换为Vorbis音频流并将此流包装到OGG容器中。您不必指定流或容器类型，因为FFmpeg为您找到了它。</p>
+<p>这也适用于视频:</p>
+<pre><code>ffmpeg -i input.mp4 output.webm
+</code></pre>
+<p>由于WebM是一种定义良好的格式，FFmpeg会自动知道它可以支持哪些视频和音频，并将流转换为有效的WebM文件。</p>
+<p>根据您选择的容器，这并不总是有效。例如，像Matroska这样的容器可以处理几乎任何你想要放入的流，无论它们是否有效。这意味着命令:</p>
+<pre><code>ffmpeg -i input.mp4 output.mkv
+</code></pre>
+<p>可能会导致文件具有与input.mp4相同的编解码器，这可能是您想要的，也可能不是。</p>
+<h2 id="选择你的编解码器"><a class="header" href="#选择你的编解码器">选择你的编解码器</a></h2>
+<p>那么当你想使用像Matroska这样的容器(几乎可以处理任何流)但仍想修改输出的编码时，您可以使用-c标志选择所需的编解码器。
+此标志允许您设置用于每个流的不同编解码器。 例如，要将音频流设置为Vorbis，您将使用以下命令:</p>
+<pre><code>ffmpeg -i input.mp3 -c:a libvorbis output.ogg
+</code></pre>
+<p>更改视频和音频流也可以这样做:</p>
+<pre><code>ffmpeg -i input.mp4 -c:v vp9 -c:a libvorbis output.mkv
+</code></pre>
+<p>这将使Matroska容器具有VP9视频流和Vorbis音频流，与我们之前制作的WebM基本相同。</p>
+<p>命令<code>ffmpeg -codecs</code>将打印FFmpeg知道的每个编解码器。 此命令的输出将根据您安装的FFmpeg的版本而更改。</p>
+<p>使用-target参数匹配行业标准，参数值可以是vcd、svcd、dvd、dv、dv50等，可能还需要加上电视制式作为前缀（pal-、ntsc-或film-）。如下:</p>
+<pre><code>ffmpeg -i input.mp3 -target pal-dvd output.ogg
+</code></pre>
+<h2 id="更改单个流"><a class="header" href="#更改单个流">更改单个流</a></h2>
+<p>通常情况下，您的文件部分正确，只有一个错误格式的流。 重新编码正确的流可能非常耗时。FFmpeg可以帮助解决这种情况:</p>
+<pre><code>ffmpeg -i input.webm -c:v copy -c:a flac output.mkv
+</code></pre>
+<p>此命令将视频流从input.webm复制到output.mkv ，并将Vorbis音频流编码为FLAC。</p>
+<h2 id="更换容器"><a class="header" href="#更换容器">更换容器</a></h2>
+<p>前面的示例可以应用于音频和视频流，允许您从一种容器格式转换为另一种容器格式，而无需进行任何其他流编码:</p>
+<pre><code>ffmpeg -i input.webm -c:av copy output.mkv
+</code></pre>
+<h2 id="影响质量"><a class="header" href="#影响质量">影响质量</a></h2>
+<p>现在我们已经掌握了编解码器，接下来的问题是:我们如何设置每个流的质量？</p>
+<p>最简单的方法是改变比特率，这可能会或可能不会导致不同的质量。人类的视听能力并不像我们想的那样清晰明确。有时候改变比特率会对主观质量产生巨大影响。其他时候它可能只会改变文件大小。有时候如果不试一试就很难说出会发生什么。</p>
+<p>要设置每个流的比特率，请使用-b标志，它以与-c标志类似的方式工作，除了您设置比特率的编解码器选项。</p>
+<p>例如，要更改视频的比特率，您可以像这样使用它:</p>
+<pre><code>ffmpeg -i input.webm -c:a copy -c:v vp9 -b:v 1M output.mkv
+</code></pre>
+<p>这将从input.webm复制音频(-c:a copy)，并将视频转换为比特率为1M/s(-b:v)的VP9编解码器(-c:v vp9)，所有这些都捆绑在一起一个Matroska容器(output.mkv)。</p>
+<p>我们可以影响质量的另一种方法是使用-r选项调整视频的帧速率:</p>
+<pre><code>ffmpeg -i input.webm -c:a copy -c:v vp9 -r 30 output.mkv
+</code></pre>
+<p>这创建了一个新的Matroska，其中复制了音频流，并且视频流的帧速率被强制为每秒30帧，而不是使用来自输入的帧速率(-r 30)。</p>
+<p>您还可以使用FFmpeg调整视频的尺寸。 最简单的方法是使用预定的视频大小:</p>
+<pre><code>ffmpeg -i input.mkv -c:a copy -s hd720 output.mkv
+</code></pre>
+<p>这会在输出中将视频修改为1280x720，但如果需要，您可以手动设置宽度和高度:</p>
+<pre><code>ffmpeg -i input.mkv -c:a copy -s 1280x720 output.mkv
+</code></pre>
+<p>这将生成与上一条命令完全相同的输出。如果要在FFmpeg中设置自定义尺寸，请记住宽度参数(1280)在高度(720)之前。</p>
+<p>调整帧速率和比特率是影响媒体质量的两种原始但有效的技术。 如果现有源的质量已经很低，则将这些值设置得非常高，无法提高现有源的质量。</p>
+<p>更改这些设置对于快速减少高质量流以缩小文件大小非常有效。调整视频大小无法提高质量，但可以使其更适合平板电脑而非电视。将640x480视频的大小更改为4K不会改善它。</p>
+<p>改变文件的质量是一个非常主观的问题，这意味着没有一种方法可以每次都有效。最好的方法是做一些小修改，并测试它是否看起来或听起来更合适。</p>
+<h2 id="修改流"><a class="header" href="#修改流">修改流</a></h2>
+<pre><code>ffmpeg -i input.mkv -c:av copy -ss 00:01:00 -t 10 output.mkv
+</code></pre>
+<p>这将复制视频和音频流(-c:av copy)，并且修剪视频。 -t选项将剪切持续时间设置为10秒， -ss选项设置视频的开始点以进行剪裁，在本例中为一分钟(00:01:00)。 您可以更精确，而不仅仅是小时，分钟和秒，如果需要，可以缩短到几毫秒。</p>
+<h2 id="旋转视频sup-classfootnote-referencea-href33asup"><a class="header" href="#旋转视频sup-classfootnote-referencea-href33asup">旋转视频<sup class="footnote-reference"><a href="#3">3</a></sup></a></h2>
+<p>想让视频顺时针旋转90度。这时候，可以使用-vf参数加入一个过滤器:</p>
+<pre><code>ffmpeg -i input.mp3 -vf &quot;rotate=90*PI/180&quot; output.ogg
+</code></pre>
+<h2 id="叠加图片"><a class="header" href="#叠加图片">叠加图片</a></h2>
+<p>如果我们希望在一段视频上叠加一张图片。可以简单实现如下:</p>
+<pre><code>ffmpeg -i input.mp3 -i image.png -filter_complex 'overlay' output.ogg
+</code></pre>
+<h2 id="提取音频"><a class="header" href="#提取音频">提取音频</a></h2>
+<p>有时你并不想要图像，你只需要音频。 幸运的是，在FFmpeg中使用-vn标志非常简单:</p>
+<pre><code>ffmpeg -i input.mkv -vn audio_only.ogg
+</code></pre>
+<p>此命令仅从输入中提取音频，将其编码为Vorbis，并将其保存到audio_only.ogg中 。 现在你有一个独立的音频流。 您也可以使用-an和-sn标志以相同的方式去除音频和字幕流。</p>
+<h2 id="制作gif"><a class="header" href="#制作gif">制作GIF</a></h2>
+<p>使用-an标志，类似于我们上面所做的，比创建动画GIF要好，如果你想制作一个没有音频的视频，但有很多地方支持不支持不同视频格式的GIF。</p>
+<pre><code>ffmpeg -i input.mkv output.gif
+</code></pre>
+<p>此命令创建与输入文件具有相同尺寸的GIF。这通常不是一个好主意，因为相对于其他视频格式，GIF不能很好地压缩(根据我的经验，GIF将比源视频大8倍)。 使用-s选项将GIF的大小调整为稍微小一些可能会有所帮助，尤其是在输入源非常大的情况下，例如高清视频。</p>
+<h2 id="获取视频信息"><a class="header" href="#获取视频信息">获取视频信息</a></h2>
+<p>有时您需要知道的是媒体文件内部信息，有几种工具可以做到这一点，最简单的是ffprobe工具:</p>
+<pre><code>ffprobe -i input.mp4
+</code></pre>
+<p>比较强大的工具有<a href="https://mediaarea.net/en/MediaInfo">MediaInfo</a>，运行命令<code>mediainfo inputFile.mkv</code>以人类可读的形式输出有关输入文件的信息列表。</p>
+<h2 id="更多"><a class="header" href="#更多">更多</a></h2>
+<p>FFmpeg还有更多更强大的用法，具体请参阅<a href="http://ffmpeg.org/documentation.html">文档</a>。</p>
+<p>如果您使用的是带有图形界面的工具来转换多媒体，那么<a href="https://handbrake.fr/">Handbrake</a>在Linux，Mac OS X和Windows上都是非常好用的。</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p><a href="https://zh.wikipedia.org/wiki/FFmpeg">https://zh.wikipedia.org/wiki/FFmpeg</a></p>
+</div>
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p><a href="https://opensource.com/article/17/6/ffmpeg-convert-media-file-formats">https://opensource.com/article/17/6/ffmpeg-convert-media-file-formats</a></p>
+</div>
+<div class="footnote-definition" id="3"><sup class="footnote-definition-label">3</sup>
+<p><a href="https://blog.csdn.net/coloriy/article/details/47447369">https://blog.csdn.net/coloriy/article/details/47447369</a></p>
+</div>
+<p>tags: #ffmpeg #转码</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="AVL_Tree.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+                                                    <a rel="next" href="VIM_Keybinding.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="AVL_Tree.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+                                    <a rel="next" href="VIM_Keybinding.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        
+    </body>
+</html>

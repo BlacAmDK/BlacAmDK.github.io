@@ -1,0 +1,929 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>BlacAmDK&#x27;s Blog</title>
+                <meta name="robots" content="noindex" />
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="favicon.svg">
+                        <link rel="shortcut icon" href="favicon.png">
+                <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+                <link rel="stylesheet" href="css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Emacs_dired.html"><strong aria-hidden="true">2.</strong> Emacs的文件管理器</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 数据结构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Heap_Sort.html"><strong aria-hidden="true">3.1.</strong> 堆</a></li><li class="chapter-item expanded "><a href="Binary_Search_Trees.html"><strong aria-hidden="true">3.2.</strong> 二叉搜索树</a></li><li class="chapter-item expanded "><a href="AVL_Tree.html"><strong aria-hidden="true">3.3.</strong> AVL树</a></li></ol></li><li class="chapter-item expanded "><a href="ffmpeg_convert.html"><strong aria-hidden="true">4.</strong> FFmpeg转码常用操作</a></li><li class="chapter-item expanded "><a href="VIM_Keybinding.html"><strong aria-hidden="true">5.</strong> VIM快捷键</a></li><li class="chapter-item expanded "><a href="Android_Modify_SharedPreferences.html"><strong aria-hidden="true">6.</strong> Android元气骑士修改存档解锁人物</a></li><li class="chapter-item expanded "><a href="Relaying-UDP-Broadcases.html"><strong aria-hidden="true">7.</strong> Relaying UDP broadcasts</a></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">BlacAmDK&#x27;s Blog</h1>
+
+                    <div class="right-buttons">
+                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="chapter-1"><a class="header" href="#chapter-1">Chapter 1</a></h1>
+<p>TBC</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="emacs的文件管理器"><a class="header" href="#emacs的文件管理器">Emacs的文件管理器</a></h1>
+<h3 id="diredsup-classfootnote-referencea-href11asup"><a class="header" href="#diredsup-classfootnote-referencea-href11asup">dired<sup class="footnote-reference"><a href="#1">1</a></sup></a></h3>
+<p>dired 是 Emacs 自带的文件管理器，操作非常方便，再加上一些扩展之后无疑是一个理想的文件管理器。看看这里来了解如何增强你的 dired 。</p>
+<h3 id="mark--flag"><a class="header" href="#mark--flag">Mark &amp; Flag</a></h3>
+<p>dired 最方便的一点就是可以对许多文件进行标记，并进行批量操作。标记的方 法有很多，最普通的标记就是 d 为当前文件贴上删除标签，之后可以使用 x 来 真正删除所有贴上删除标签的文件。</p>
+<p>dired 还提供了许多预定义的方便的标记操作(当使用 C-u 传递一个前缀参数 时，他们执行相反操作，即去掉标记)，例如：</p>
+<ul>
+<li><code>* *</code> 标记所有可执行文件。</li>
+<li><code>* @</code> 标记所有符号链接。</li>
+<li><code>* /</code> 标记所有目录(不包括 . 和 .. )。</li>
+<li><code>* s</code> 标记所有文件(不高考 . 和 .. )。</li>
+<li><code>* .</code> 标记具有给定扩展名的文件。</li>
+<li><code>% m</code> REGEXP <RET> 或 * % REGEXP <RET> 标记所有匹配到给定的正则表达式 的文件。</li>
+<li><code>% g</code> REGEXP <RET> 标记所有文件 内容 匹配到给定的正则表达式的文件。</li>
+</ul>
+<p>另外，还有一些相关的命令：</p>
+<ul>
+<li><code>u</code> 去除当前行的标记。</li>
+<li><code>&lt;DEL&gt;</code> 上移一行并去除该行的标记。</li>
+<li><code>U</code> 去除所有标记。</li>
+<li><code>* ? MARKCHAR</code> 或 <code>M-&lt;DEL&gt;</code> 去除所有以 MARKCHAR 标记的文件的标记，如果 传递一个前缀参数，则会对每一个文件要求你确认是否去除标记。</li>
+<li><code>t</code> 交换标记，即所有原来标记为 * 的文件被置于未标记状态，原来未标记的 文件被标记为 * ，原来有其他标记的文件不受影响。</li>
+</ul>
+<p>上面的操作都是使用 <code>*</code> 进行标记，但是 dired 可以使用更多的字符进行标记， 只是没有提供相应的快捷键操作而已，你可以先以 <code>*</code> 标记，然后使用 <code>* c OLD-MARKCHAR NEW-MARKCHAR</code> 来把 <code>*</code> 标记变换成其他标记，几乎任何字符(当然不包括中文这种多字节的字符)都可以作为标记，不过空格被特殊对待，用于表示所有未标记的文件。</p>
+<p>列举了这么多命令，多少有些枯燥，作为一个例子，我们来把当前目录下的所有备份文件移动到 <code>~/backup</code> 目录下。假设当前目录已经有一些文件被你以 <code>D</code> 标记，但是暂时还不想删除：</p>
+<ol>
+<li>选择个临时标记，比如 <code>t</code> ，只要保证当前 buffer 里面没有已经存在的 这种标记就行了。</li>
+<li><code>* c D t</code> 把当前所有 <code>D</code> 标签换为 <code>t</code> 标签。</li>
+<li><code>~</code> 以 <code>D</code> 标记所有备份文件。</li>
+<li><code>* c D *</code> 把 <code>D</code> 标签换为 <code>*</code> 标签。</li>
+<li><code>R ~/backup &lt;RET&gt;</code> 来把所有标记为 <code>*</code> 的文件移动到 <code>~/backup</code> 目录里面。</li>
+<li><code>* c t D</code> 恢复原来的 <code>D</code> 标记。</li>
+</ol>
+<p>当然这要假设你原来没有设定其他的 <code>*</code> 标记，要不然你也可以再添加一个临时标记。总之操作和清晰也很方便，感觉像在汇编语言里面使用寄存器一样，大多数批量操作都是针对 <code>*</code> 标记的，所以对某个标记操作之前需要把他先转换为 <code>*</code> 标记。</p>
+<p>另外，还有一个非常强大的标记的方法，绑定到 <code>M-(</code> 或 <code>* (</code> 上。它可以让你使 用断言来决定标记哪些文件。 <code>C-h f dired-mark-sexp RET</code> 可以得到详细的文档。 这个功能非常强大，有点类似于 find 程序，例如，标记所有没有编译的 Elisp 文件(如果编译了，那么会有一个同名，但是扩展名为 <code>.elc</code> 的文件存在) 的方法 是输入这个断言： <code>(and (string-match &quot;\\.el$&quot; name) (not (file-exists-p (concat name &quot;c&quot;)))) </code>。</p>
+<h3 id="文件操作"><a class="header" href="#文件操作">文件操作</a></h3>
+<p>dired 内建了很多文件操作，对于操作的文件有一个统一的约定，按照顺序是：</p>
+<ol>
+<li>如果你通过 <code>C-u</code> 传递一个前缀参数 <code>N</code> ，那么它对从当前行开始的 <code>N</code> 行执行操作(<code>N</code>也可以是负数)。</li>
+<li>如果有被标记为 <code>*</code> 的文件，则以这些文件为操作对象。</li>
+<li>只对当前光标所在的文件进行操作。</li>
+</ol>
+<h4 id="常用操作"><a class="header" href="#常用操作">常用操作</a></h4>
+<p>这些命令全部绑定到大写字母上，记忆也非常方便：</p>
+<ul>
+<li><code>C</code> 拷贝文件。把 <code>dired-recursive-copies</code> 设为非 <code>nil</code> 的值可以递归拷贝目录，通常我们设定为 <code>top</code> ，这表示对于顶层目录 dired 会先进行询问是否要递归拷贝，而其中的子目录则不再询问。如果嫌询问太麻烦，可以直接设置为 <code>always</code> 。</li>
+<li><code>D</code> 删除文件。类似的有一个 <code>dired-recursive-deletes</code> 变量可以控制递归删 除。</li>
+<li><code>R</code> 重命名文件，也就是移动文件。</li>
+<li><code>H</code> 创建硬链接。</li>
+<li><code>S</code> 创建软链接。</li>
+<li><code>M</code> 修改权限位，即 shell 里面的 chmod 命令。</li>
+<li><code>G</code> 修改文件所属的组。</li>
+<li><code>O</code> 修改文件的所有者。</li>
+<li><code>T</code> 修改文件的修改时间，类似于 shell 命令 touch 。</li>
+<li><code>P</code> 打印文件。</li>
+<li><code>Z</code> 压缩或解压文件。</li>
+<li><code>L</code> 把 Elisp 文件加载进 Emacs 。</li>
+<li><code>B</code> 对 Elisp 文件进行 Byte compile 。</li>
+<li><code>A</code> 对文件内容进行正则表达式搜索，搜索会在第一个匹配的地方停下，然后 可以使用 M-, 搜索下一个匹配。</li>
+<li><code>Q</code> 对文件内容进行交互式的正则表达式替换。</li>
+</ul>
+<h4 id="shell-命令"><a class="header" href="#shell-命令">shell 命令</a></h4>
+<p>除了这些操作，还可以使用 <code>!</code> 来执行 shell 命令。这里介绍了自动猜测 shell 命令的办法，就类似于通常的文件管理器里面以关联的程序打开了。</p>
+<h4 id="强大的重命名功能"><a class="header" href="#强大的重命名功能">强大的重命名功能</a></h4>
+<p>dired 有一个文件名转换的理念，所以转换，并不一定是重命名，还可以是复制和创建链接。所以，除了 <code>% u</code> 和 <code>% l</code> 重命名原文件为大写、小写外，一个使用正则表达式进行转换的命令提供了四个选项： <code>% X</code> 其中 <code>X</code> 可以是 <code>R</code> , <code>C</code> , <code>H</code> 和 <code>S</code> ，分别代表重命名、复制、创建硬链接和创建软链接，他们使用匹配和替换的机制，这有点像 rename 这个程序，例如： <code>% R \.[^.]*$ &lt;RET&gt; .1\&amp; &lt;RET&gt;</code> 给原来的文件名加个标号 1 ，把 <code>foo.txt</code> 变成 <code>foo.1.txt</code> 。</p>
+<p>另外，dired 还有一个叫做 Wdired 的扩展可以直接在 dired 的 buffer 里面编辑文件名来达到重命名的效果。使用 <code>M-x wdired-change-to-wdired-mode</code> 进入编辑模式，这个时候可以直接像编辑普通文本一样编辑文件名，还可以添加路径来实现把文件移动到其他目录。除了文件名可以编辑以外，其他部分被标记为只读，但是如果把 <code>wdired-allow-to-change-permissions</code> 设为 t 的话，还可以编辑文件的权限位。编辑完成之后使用 <code>C-c C-c</code> 来应用所做的编辑。非常方便。</p>
+<h3 id="排序和过滤"><a class="header" href="#排序和过滤">排序和过滤</a></h3>
+<p>用 <code>C-u s</code> 可以编辑 dired 的 <code>dired-listing-switches</code> 这个变量，从而达到控制排序的方法的目的。
+另外 dired 还有一个 <code>k</code> 用于去掉不想显示出来的文件，它并不删除磁盘上的文件，只是临 时从 dired 的 buffer 中去掉他们， <code>g</code> 刷新一下它们又会显示出来，这样，首先用强大的标记功能进行标记，然后使用 <code>k</code> 去掉，就实现了过滤的功能。</p>
+<h3 id="子目录操作"><a class="header" href="#子目录操作">子目录操作</a></h3>
+<p>dired 允许同时操作当前目录和子目录。在 <code>dired-listing-switches</code> 里面加入 <code>R</code> 选项就可以显示子目录，如果只是想临时显示某个子目录的内容，对该目录执 行 <code>i</code> 操作就会把该子目录的内容添加到 dired 当前 buffer 的末尾并把光标移 动到那里，dired 在移动之前会先设置一个 mark ，所以可以使用 <code>C-u C-&lt;SPC&gt;</code>。 </p>
+<h3 id="其他功能"><a class="header" href="#其他功能">其他功能</a></h3>
+<p>还有一些方便的功能，我把几个常用的命令列在这里：</p>
+<ul>
+<li><code>+</code> 创建目录</li>
+<li><code>w</code> 复制文件名，如果通过 <code>C-u</code> 传递一个前缀参数 <code>0</code> ，则复制决定路径名， 如果只是 <code>C-u</code> 则复制相对于 dired 当前目录的相对路径。</li>
+<li><code>I</code> 把当前文件以 info 文档的格式打开。</li>
+<li><code>N</code> 把当前文件以 man 格式打开(使用 WoMan)。</li>
+<li><code>Y</code> 为所有标记的文件创建一个到指定目录的相对符号连接(即使用相对路径进 行引用，而不是绝对路径)。</li>
+</ul>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p><a href="http://lifegoo.pluskid.org/wiki/EmacsAsFileManger.html">http://lifegoo.pluskid.org/wiki/EmacsAsFileManger.html</a></p>
+</div>
+<p>tags: #emacs #dired</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="堆"><a class="header" href="#堆">堆</a></h1>
+<h2 id="堆的简介"><a class="header" href="#堆的简介">堆的简介</a></h2>
+<p>堆是优先级队列的实现，是一种数据结构，你可以把它看做一棵完全二叉树。</p>
+<pre><code> index:    1      2      3      4     5     6     7     8     9     10
+         +-------------------------------------------------------------+
+ array:  | 16  |  14  |  10  |  8  |  7  |  9  |  3  |  2  |  4  |  1  |
+         +-------------------------------------------------------------+
+                                |
+                                |   可以把这个数组想像成二叉树
+                                V
+
+ index:    1               array:   16
+          / \                       / \
+         /   \                     /   \
+        2     3                   14    10
+       /\     /\                 /\     /\
+      /  \   /  \               /  \   /  \
+     4   5   6   7             8   7   9   3
+    /\   |                    /\   |
+   /  \  /                   /  \  /
+  8   9 10                  2   4  1
+</code></pre>
+<h2 id="堆的属性"><a class="header" href="#堆的属性">堆的属性</a></h2>
+<h3 id="堆结点的访问"><a class="header" href="#堆结点的访问">堆结点的访问</a></h3>
+<p>通常堆是通过一维数组来实现的，树的根是第一个元素。</p>
+<p>在数组起始位置为 1 的情形中（易于理解，如上图）：</p>
+<ul>
+<li>父节点 i 的左子节点在位置 (2i)</li>
+<li>父节点 i 的右子节点在位置 (2i+1)</li>
+<li>子节点 i 的父节点在位置 floor(i/2)</li>
+</ul>
+<p>在数组起始位置为 0 的情形中（用于代码中）：</p>
+<ul>
+<li>父节点 i 的左子节点在位置 (2i+1)</li>
+<li>父节点 i 的右子节点在位置 (2i+2)</li>
+<li>子节点 i 的父节点在位置 floor((i-1)/2)</li>
+</ul>
+<h3 id="大根堆和小根堆"><a class="header" href="#大根堆和小根堆">大根堆和小根堆</a></h3>
+<h4 id="大根堆-max-heap"><a class="header" href="#大根堆-max-heap">大根堆 (Max-heap)</a></h4>
+<ul>
+<li>大根堆又称最大堆（大顶堆）</li>
+<li>最大堆中的最大元素值出现在根结点（堆顶）</li>
+<li>堆中每个父节点的元素值都大于等于其孩子结点（如果存在）</li>
+</ul>
+<h4 id="小根堆-min-heap"><a class="header" href="#小根堆-min-heap">小根堆 (Min-heap)</a></h4>
+<ul>
+<li>小根堆又称最小堆（小顶堆）</li>
+<li>最小堆中的最小元素值出现在根结点（堆顶）</li>
+<li>堆中每个父节点的元素值都小于等于其孩子结点（如果存在）</li>
+</ul>
+<h2 id="堆的操作"><a class="header" href="#堆的操作">堆的操作</a></h2>
+<p>堆中定义以下几种操作：</p>
+<ul>
+<li>最大堆调整（Max Heapify）：将堆的末端子节点作调整，使得子节点永远小于父节点</li>
+<li>创建最大堆（Build Max Heap）：将堆中的所有数据重新排序</li>
+<li>堆排序（HeapSort）：移除位在第一个数据的根节点，并做最大堆调整的递归运算</li>
+</ul>
+<h2 id="堆排序"><a class="header" href="#堆排序">堆排序</a></h2>
+<p>我们假设数组起始位置为 1，方便理解。</p>
+<h3 id="max-heapify"><a class="header" href="#max-heapify">Max-Heapify</a></h3>
+<p>Max-Heapify 是基本操作，我们会一遍又一遍的递归使用它。</p>
+<p>例：对堆 A 的根结点（索引为 1 的结点）进行 Max-Heapify 操作<code>Max-Heapify(A, 1)</code></p>
+<pre><code>       (4)
+       / \        根结点是 4，它的孩子大于它，所以这个结点要与
+      /   \       它的孩子结点中最大的元素 14 进行交换
+    (14)   7
+    /\     /
+   /  \   /
+  2   8   1
+</code></pre>
+<hr />
+<pre><code>        14
+       / \        交换过后的 4，继续看它的两个孩子是否满足条件
+      /   \       发现不满足，这次它和孩子结点中最大的元素 8 进行交换
+    (4)    7
+    /\     /
+   /  \   /
+  2  (8)  1
+</code></pre>
+<hr />
+<pre><code>        14
+       / \        交换过后的 4 没有孩子，Max-Heapify 操作结束
+      /   \
+     8    7
+    /\    /
+   /  \  /
+  2   4  1
+</code></pre>
+<h3 id="build-max-heap"><a class="header" href="#build-max-heap">Build-Max-Heap</a></h3>
+<p>Build-Max-Heap(A) 的操作如下 (n 是堆的大小）</p>
+<pre><code>for i=n/2 downTo 1:
+    do Max-Heapify(A, i)
+</code></pre>
+<p>因为在 n/2 之后的结点是没有子结点的，所以只需要从 n/2 开始一直到 1 执行 Max-Heapify 即可。</p>
+<h3 id="heap-sort"><a class="header" href="#heap-sort">Heap-Sort</a></h3>
+<p>堆排序的过程是：</p>
+<ol>
+<li>创建一个堆</li>
+<li>把堆首（最大值）和堆尾互换</li>
+<li>把堆的尺寸缩小1</li>
+<li>重复步骤2，直到堆的尺寸为1</li>
+</ol>
+<p>Java 代码的实现如下<sup class="footnote-reference"><a href="#1">1</a></sup>：</p>
+<pre><code class="language-java">import java.util.Arrays;
+
+public class HeapSort {
+
+    private int[] arr;
+
+    public HeapSort(int[] arr){
+        this.arr = arr;
+    }
+
+    /**
+     * 堆排序的主要入口方法，共两步。
+     */
+    public void sort(){
+        /*
+         *  第一步：将数组堆化
+         *  beginIndex = 第一个非叶子节点。
+         *  从第一个非叶子节点开始即可。无需从最后一个叶子节点开始。
+         *  叶子节点可以看作已符合堆要求的节点，根节点就是它自己且自己以下值为最大。
+         */
+        int len = arr.length - 1;
+        int beginIndex = (len - 1) &gt;&gt; 1;
+        for(int i = beginIndex; i &gt;= 0; i--){
+            maxHeapify(i, len);
+        }
+
+        /*
+         * 第二步：对堆化数据排序
+         * 每次都是移出最顶层的根节点 A[0]，与最尾部节点位置调换，同时遍历长度 - 1。
+         * 然后从新整理被换到根节点的末尾元素，使其符合堆的特性。
+         * 直至未排序的堆长度为 0。
+         */
+        for(int i = len; i &gt; 0; i--){
+            swap(0, i);
+            maxHeapify(0, i - 1);
+        }
+    }
+
+    private void swap(int i,int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    /**
+     * 调整索引为 index 处的数据，使其符合堆的特性。
+     *
+     * @param index 需要堆化处理的数据的索引
+     * @param len 未排序的堆（数组）的长度
+     */
+    private void maxHeapify(int index,int len){
+        int li = (index &lt;&lt; 1) + 1; // 左子节点索引
+        int ri = li + 1;           // 右子节点索引
+        int cMax = li;             // 子节点值最大索引，默认左子节点。
+
+        if(li &gt; len) return;       // 左子节点索引超出计算范围，直接返回。
+        if(ri &lt;= len &amp;&amp; arr[ri] &gt; arr[li]) // 先判断左右子节点，哪个较大。
+            cMax = ri;
+        if(arr[cMax] &gt; arr[index]){
+            swap(cMax, index);      // 如果父节点被子节点调换，
+            maxHeapify(cMax, len);  // 则需要继续判断换下后的父节点是否符合堆的特性。
+        }
+    }
+
+    /**
+     * 测试用例
+     *
+     * 输出：
+     * [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9]
+     */
+    public static void main(String[] args) {
+        int[] arr = new int[]{3,5,3,0,8,6,1,5,8,6,2,4,9,4,7,0,1,8,9,7,3,1,2,5,9,7,4,0,2,6};
+        new HeapSort(arr).sort();
+        System.out.println(Arrays.toString(arr));
+    }
+
+}
+</code></pre>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%A0%86%E6%8E%92%E5%BA%8F#Java">https://zh.wikipedia.org/wiki/%E5%A0%86%E6%8E%92%E5%BA%8F#Java</a></p>
+</div>
+<p>tags: #数据结构 #排序 #堆</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="二叉树"><a class="header" href="#二叉树">二叉树</a></h1>
+<h2 id="简介"><a class="header" href="#简介">简介</a></h2>
+<p>如图所示，与堆相比，二叉树要更复杂。堆是一个 <strong>数组</strong>，我们可以把它简单地可视化为一颗树，而二叉树和堆不同，它实际上是一颗有指针的 <strong>树</strong>。</p>
+<p>本次主要介绍二叉搜索树，二叉搜索树是指一颗空树或者具有下列性质的二叉树：</p>
+<ul>
+<li>若任意结点的左子树不为空，则左子树上所有结点的值均小于它的根结点的值。</li>
+<li>若任意结点的右子树不为空，则右子树上所有结点的值均大于它的根结点的值。</li>
+<li>任意结点的左、右子树也分别为二叉搜索树。</li>
+<li>没有键值相等的结点。</li>
+</ul>
+<p>如下图所示，就是一颗二叉搜索树:
+你可以看到根结点30的左子树的值都小于它，右子树的值都大于它</p>
+<pre><code>          30
+          / \
+         /   \
+       17     40
+       /\
+      /  \
+     14  20
+</code></pre>
+<h2 id="属性"><a class="header" href="#属性">属性</a></h2>
+<ul>
+<li>深度: 对于任意结点n，n的深度为从根到n的唯一路径长，根的深度为0。</li>
+<li>高度: 对于任意结点n，n的高度为从n到一片树叶的最长路径长，所有树叶的高度为0。</li>
+</ul>
+<p>图示如下(高度height，深度depth):</p>
+<pre><code>            d0h3
+            / \
+           /   \
+         d1h1  d1h2
+         /\      \
+        /  \      \
+      d2h0 d2h0  d2h1
+                   /
+                  /
+                d3h0
+</code></pre>
+<p>某个结点的高度等于它左右子树高度的最大值+1</p>
+<h2 id="操作"><a class="header" href="#操作">操作</a></h2>
+<p>这里先声明数的高度为h。
+并且在每个元素的结点加入一个表示子树大小的属性（在括号中表示）。</p>
+<h3 id="插入"><a class="header" href="#插入">插入</a></h3>
+<p>如果我想插入一个元素18到下面的二叉搜索树，并且同时更新子树大小属性，那么流程如下</p>
+<pre><code>          30(5)         先将这个元素与根元素比较，18比根元素30小，所以把它插入左子树
+          / \               并将元素30的子树大小属性5加上1
+         /   \
+       17(3)  40(1)    再将这个元素与17比较，18比17大，所以把它插入右子树
+       /\                   并将元素17的子树大小属性3加上1
+      /  \
+   14(1) 20(1)         将这个元素与20比较，18比20小，所以把它插入左子树
+                             并将元素20的子树大小属性1加上1，新插入的元素18子树大小为1
+</code></pre>
+<p>从上面的例子可以看出，对其进行插入操作的时间复杂度为O(h)，与树的高度有关。</p>
+<h3 id="查找最大与最小值"><a class="header" href="#查找最大与最小值">查找最大与最小值</a></h3>
+<p>如果你想找到最小值，只需沿着树的左侧一直找下去，到达叶子结点即为最小值；最大值同理则为沿着右侧一直找下去，根据二叉搜索树的性质不难看出这一点。</p>
+<p>对其进行查找最大与最小值操作的时间复杂度为O(h)，与树的高度有关。</p>
+<h3 id="查找相邻的较大较小数"><a class="header" href="#查找相邻的较大较小数">查找相邻的较大较小数</a></h3>
+<p>对二叉搜索树进行中序遍历即可得到从小到大排序过的序列。</p>
+<h3 id="查找小于等于某个数的元素有多少个"><a class="header" href="#查找小于等于某个数的元素有多少个">查找小于等于某个数的元素有多少个</a></h3>
+<ol>
+<li>遍历整个树查找你想要查找的元素</li>
+<li>随着查找的路径逐个比较，若小于等于比较元素则加一</li>
+<li>并且累加左子树的子树大小</li>
+</ol>
+<p>例如我想查找小于等于40的元素有多少</p>
+<pre><code>             30(6)         先将这个元素与30比较，40大于30，(+1)
+             / \            然后再累加左子树17的子树大小，(+2)，然后看右子树
+            /   \
+        17(2)  40(3)    再将这个元素与结点40比较，相等，(+1)
+         /      / \       然后再累加左子树38的子树大小，(+1)，查找结束
+        /      /   \
+    14(1)   38(1) 44(1)
+
+    将上面的数字累加起来，+1+2+1+1，最终得到5，所以小于等于40的元素有5个。
+</code></pre>
+<p>时间复杂度为O(h)，与树的高度有关。</p>
+<h3 id="小结"><a class="header" href="#小结">小结</a></h3>
+<ul>
+<li>与堆相比，二叉搜索树可以找到相邻的较大较小数，这是堆所不具备的能力。</li>
+<li>从上面的操作我们发现时间复杂度与树的高度有关，所以我们要尽量减少树的高度，使之成为平衡树。</li>
+</ul>
+<h2 id="平衡树"><a class="header" href="#平衡树">平衡树</a></h2>
+<h3 id="简介-1"><a class="header" href="#简介-1">简介</a></h3>
+<p>平衡树是计算机科学中的一类改进的二叉搜索树。一般的二叉搜索树的查询复杂度是根目标结点到树根的距离(即深度)有关，因此当结点的深度普遍较大时，查询的均摊复杂度会上升，为了更高效的查询，平衡树应运而生了。</p>
+<h3 id="基本操作"><a class="header" href="#基本操作">基本操作</a></h3>
+<p>几乎所有平衡树的操作都基于树旋转操作，通过旋转操作可以使得树趋于平衡。对一颗查找树(search tree)进行查询、新增、删除等动作，所花的时间与树的高度h成比例，并不与树的容量n成比例。如果可以让树维持矮矮胖胖的好身材，也就是让h维持在O(log n)左右，完成上述工作就很省时间。能够一直维持好身材，不因新增删除而长歪的搜寻树，叫做平衡树(balanced search tree)。</p>
+<p>旋转(Rotate) —— 不破坏左小右大特性的小手术</p>
+<h3 id="各种平衡树"><a class="header" href="#各种平衡树">各种平衡树</a></h3>
+<ul>
+<li><a href="/AVL_Tree.html">AVL树</a></li>
+<li>红黑树</li>
+<li>加权平衡树(WBT)</li>
+<li>Treap(Tree+Heap)</li>
+</ul>
+<p>这些均可以使查找树的高度为O(log n)</p>
+<p>tags: #数据结构 #排序 #二叉搜索树</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="avl-tree"><a class="header" href="#avl-tree">AVL Tree</a></h1>
+<h2 id="简介-2"><a class="header" href="#简介-2">简介</a></h2>
+<p>在AVL树中，任一结点对应的两颗子树的最大高度差为1，因此它也被称为高度平衡树。查找、插入和删除在平均和最坏情况下的时间复杂度都是O(log n)。增加和删除元素的操作则可能需要借由一次或多次树旋转，以实现树的重新平衡。</p>
+<p>在开始之前请明确<a href="/Binary_Search_Trees.html#%E5%B1%9E%E6%80%A7">树的高度</a>的概念。</p>
+<p>以下面这颗树为例，标明各个结点的高度</p>
+<pre><code>          30(2)
+          / \
+         /   \
+       17(1)  40(0)
+       /\
+      /  \
+   14(0) 20(0)
+</code></pre>
+<p>为了方便起见，空结点的高度设定为-1，例如上图右下的40结点，左右孩子都为空，高度看作-1，这样计算像40这样的结点高度时不用指定特殊情况：左右孩子高度最大值加一(-1+1=0)</p>
+<h2 id="属性-1"><a class="header" href="#属性-1">属性</a></h2>
+<p>AVL树每个结点左右子树的高度差不超过1，如上图根结点30，左子树高度为1，右子树高度为0，相差1。</p>
+<h2 id="基本操作-1"><a class="header" href="#基本操作-1">基本操作</a></h2>
+<h3 id="旋转rotation"><a class="header" href="#旋转rotation">旋转(Rotation)</a></h3>
+<p>如下图所示，从左到右为对X结点左旋(X结点移动到左侧)，从右到左为对Y结点右旋(Y结点移动到右侧)</p>
+<pre><code>           X                                 Y
+          / \         left_rotate(X)        / \
+         /   \        ----------------&gt;    /   \
+       A子树  Y    &lt;----------------      X   C子树
+              /\      right_rotate(Y)    /\
+             /  \                       /  \
+          B子树 C子树               A子树 B子树
+</code></pre>
+<p>此操作花费恒定的O(1)时间，而且变换后满足二叉搜索树的属性，你可以看到操作前后它的中序遍历都是A,X,B,Y,C</p>
+<h3 id="插入-1"><a class="header" href="#插入-1">插入</a></h3>
+<ol>
+<li>插入到二叉搜索树</li>
+<li>修复AVL属性</li>
+</ol>
+<p>第一步就是很普通的把结点<a href="/Binary_Search_Trees.html#%E6%8F%92%E5%85%A5">插入到二叉搜索树</a>，重点在第二步如何保持AVL树的<a href="AVL_Tree.html#%E5%B1%9E%E6%80%A7">属性</a>，请看下面的两种情况(括号内为结点高度)：</p>
+<pre><code>如果X的右子树(Y树)右侧偏重(C子树高度大于B子树高度)，进行左旋X操作
+
+           X(k)                            Y(k-1)
+          / \         left_rotate(X)        / \
+         /   \        ----------------&gt;    /   \
+   A子树(k-3) Y(k-1)                   X(k-2)  C子树(k-2)
+              /\                         /\
+             /  \                       /  \
+     B子树(k-3) C子树(k-2)      A子树(k-3) B子树(k-3)
+     
+否则，对Z进行右旋操作，再对X进行左旋操作
+
+           X          right_totate(Z)        Y
+          / \          left_rotate(X)       / \
+         /   \        ----------------&gt;    /   \
+      A子树   Z                           X     Z
+              /\                         /\     /\
+             /  \                       /  \   /  \
+            Y   D子树                  A   B   C   D
+           /\                         子  子   子  子
+          /  \                        树  树   树  树
+      B子树  C子树
+</code></pre>
+<p>你可以使用它进行排序，逐个插入结点<code>时间复杂度为O(nlogn)</code>，之后进行中序遍历<code>时间复杂度为O(n)</code>，就可以得到递增的序列。</p>
+<p>tags: #数据结构 #排序 #二叉搜索树 #AVL树</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ffmpeg转码常用操作"><a class="header" href="#ffmpeg转码常用操作">FFmpeg转码常用操作</a></h1>
+<h2 id="简介sup-classfootnote-referencea-href11asup"><a class="header" href="#简介sup-classfootnote-referencea-href11asup">简介<sup class="footnote-reference"><a href="#1">1</a></sup></a></h2>
+<p>FFmpeg 是一个自由软件，可以运行音频和视频多种格式的录影、转换、流功能，包含了libavcodec——这是一个用于多个项目中音频和视频的解码器库，以及libavformat——一个音频与视频格式转换库。 “FFmpeg”这个单词中的“FF”指的是“Fast Forward”。</p>
+<h2 id="基本转换sup-classfootnote-referencea-href22asup"><a class="header" href="#基本转换sup-classfootnote-referencea-href22asup">基本转换<sup class="footnote-reference"><a href="#2">2</a></sup></a></h2>
+<p>FFmpeg的默认设置相当聪明，通常它会自动选择正确的编解码器和容器而无需任何复杂的配置。</p>
+<p>例如，假设您有一个MP3文件并希望将其转换为OGG文件:</p>
+<pre><code>ffmpeg -i input.mp3 output.ogg
+</code></pre>
+<p>此命令采用名为input.mp3的MP3文件，并将其转换为名为output.ogg的OGG文件。从FFmpeg的角度来看，这意味着将MP3音频流转换为Vorbis音频流并将此流包装到OGG容器中。您不必指定流或容器类型，因为FFmpeg为您找到了它。</p>
+<p>这也适用于视频:</p>
+<pre><code>ffmpeg -i input.mp4 output.webm
+</code></pre>
+<p>由于WebM是一种定义良好的格式，FFmpeg会自动知道它可以支持哪些视频和音频，并将流转换为有效的WebM文件。</p>
+<p>根据您选择的容器，这并不总是有效。例如，像Matroska这样的容器可以处理几乎任何你想要放入的流，无论它们是否有效。这意味着命令:</p>
+<pre><code>ffmpeg -i input.mp4 output.mkv
+</code></pre>
+<p>可能会导致文件具有与input.mp4相同的编解码器，这可能是您想要的，也可能不是。</p>
+<h2 id="选择你的编解码器"><a class="header" href="#选择你的编解码器">选择你的编解码器</a></h2>
+<p>那么当你想使用像Matroska这样的容器(几乎可以处理任何流)但仍想修改输出的编码时，您可以使用-c标志选择所需的编解码器。
+此标志允许您设置用于每个流的不同编解码器。 例如，要将音频流设置为Vorbis，您将使用以下命令:</p>
+<pre><code>ffmpeg -i input.mp3 -c:a libvorbis output.ogg
+</code></pre>
+<p>更改视频和音频流也可以这样做:</p>
+<pre><code>ffmpeg -i input.mp4 -c:v vp9 -c:a libvorbis output.mkv
+</code></pre>
+<p>这将使Matroska容器具有VP9视频流和Vorbis音频流，与我们之前制作的WebM基本相同。</p>
+<p>命令<code>ffmpeg -codecs</code>将打印FFmpeg知道的每个编解码器。 此命令的输出将根据您安装的FFmpeg的版本而更改。</p>
+<p>使用-target参数匹配行业标准，参数值可以是vcd、svcd、dvd、dv、dv50等，可能还需要加上电视制式作为前缀（pal-、ntsc-或film-）。如下:</p>
+<pre><code>ffmpeg -i input.mp3 -target pal-dvd output.ogg
+</code></pre>
+<h2 id="更改单个流"><a class="header" href="#更改单个流">更改单个流</a></h2>
+<p>通常情况下，您的文件部分正确，只有一个错误格式的流。 重新编码正确的流可能非常耗时。FFmpeg可以帮助解决这种情况:</p>
+<pre><code>ffmpeg -i input.webm -c:v copy -c:a flac output.mkv
+</code></pre>
+<p>此命令将视频流从input.webm复制到output.mkv ，并将Vorbis音频流编码为FLAC。</p>
+<h2 id="更换容器"><a class="header" href="#更换容器">更换容器</a></h2>
+<p>前面的示例可以应用于音频和视频流，允许您从一种容器格式转换为另一种容器格式，而无需进行任何其他流编码:</p>
+<pre><code>ffmpeg -i input.webm -c:av copy output.mkv
+</code></pre>
+<h2 id="影响质量"><a class="header" href="#影响质量">影响质量</a></h2>
+<p>现在我们已经掌握了编解码器，接下来的问题是:我们如何设置每个流的质量？</p>
+<p>最简单的方法是改变比特率，这可能会或可能不会导致不同的质量。人类的视听能力并不像我们想的那样清晰明确。有时候改变比特率会对主观质量产生巨大影响。其他时候它可能只会改变文件大小。有时候如果不试一试就很难说出会发生什么。</p>
+<p>要设置每个流的比特率，请使用-b标志，它以与-c标志类似的方式工作，除了您设置比特率的编解码器选项。</p>
+<p>例如，要更改视频的比特率，您可以像这样使用它:</p>
+<pre><code>ffmpeg -i input.webm -c:a copy -c:v vp9 -b:v 1M output.mkv
+</code></pre>
+<p>这将从input.webm复制音频(-c:a copy)，并将视频转换为比特率为1M/s(-b:v)的VP9编解码器(-c:v vp9)，所有这些都捆绑在一起一个Matroska容器(output.mkv)。</p>
+<p>我们可以影响质量的另一种方法是使用-r选项调整视频的帧速率:</p>
+<pre><code>ffmpeg -i input.webm -c:a copy -c:v vp9 -r 30 output.mkv
+</code></pre>
+<p>这创建了一个新的Matroska，其中复制了音频流，并且视频流的帧速率被强制为每秒30帧，而不是使用来自输入的帧速率(-r 30)。</p>
+<p>您还可以使用FFmpeg调整视频的尺寸。 最简单的方法是使用预定的视频大小:</p>
+<pre><code>ffmpeg -i input.mkv -c:a copy -s hd720 output.mkv
+</code></pre>
+<p>这会在输出中将视频修改为1280x720，但如果需要，您可以手动设置宽度和高度:</p>
+<pre><code>ffmpeg -i input.mkv -c:a copy -s 1280x720 output.mkv
+</code></pre>
+<p>这将生成与上一条命令完全相同的输出。如果要在FFmpeg中设置自定义尺寸，请记住宽度参数(1280)在高度(720)之前。</p>
+<p>调整帧速率和比特率是影响媒体质量的两种原始但有效的技术。 如果现有源的质量已经很低，则将这些值设置得非常高，无法提高现有源的质量。</p>
+<p>更改这些设置对于快速减少高质量流以缩小文件大小非常有效。调整视频大小无法提高质量，但可以使其更适合平板电脑而非电视。将640x480视频的大小更改为4K不会改善它。</p>
+<p>改变文件的质量是一个非常主观的问题，这意味着没有一种方法可以每次都有效。最好的方法是做一些小修改，并测试它是否看起来或听起来更合适。</p>
+<h2 id="修改流"><a class="header" href="#修改流">修改流</a></h2>
+<pre><code>ffmpeg -i input.mkv -c:av copy -ss 00:01:00 -t 10 output.mkv
+</code></pre>
+<p>这将复制视频和音频流(-c:av copy)，并且修剪视频。 -t选项将剪切持续时间设置为10秒， -ss选项设置视频的开始点以进行剪裁，在本例中为一分钟(00:01:00)。 您可以更精确，而不仅仅是小时，分钟和秒，如果需要，可以缩短到几毫秒。</p>
+<h2 id="旋转视频sup-classfootnote-referencea-href33asup"><a class="header" href="#旋转视频sup-classfootnote-referencea-href33asup">旋转视频<sup class="footnote-reference"><a href="#3">3</a></sup></a></h2>
+<p>想让视频顺时针旋转90度。这时候，可以使用-vf参数加入一个过滤器:</p>
+<pre><code>ffmpeg -i input.mp3 -vf &quot;rotate=90*PI/180&quot; output.ogg
+</code></pre>
+<h2 id="叠加图片"><a class="header" href="#叠加图片">叠加图片</a></h2>
+<p>如果我们希望在一段视频上叠加一张图片。可以简单实现如下:</p>
+<pre><code>ffmpeg -i input.mp3 -i image.png -filter_complex 'overlay' output.ogg
+</code></pre>
+<h2 id="提取音频"><a class="header" href="#提取音频">提取音频</a></h2>
+<p>有时你并不想要图像，你只需要音频。 幸运的是，在FFmpeg中使用-vn标志非常简单:</p>
+<pre><code>ffmpeg -i input.mkv -vn audio_only.ogg
+</code></pre>
+<p>此命令仅从输入中提取音频，将其编码为Vorbis，并将其保存到audio_only.ogg中 。 现在你有一个独立的音频流。 您也可以使用-an和-sn标志以相同的方式去除音频和字幕流。</p>
+<h2 id="制作gif"><a class="header" href="#制作gif">制作GIF</a></h2>
+<p>使用-an标志，类似于我们上面所做的，比创建动画GIF要好，如果你想制作一个没有音频的视频，但有很多地方支持不支持不同视频格式的GIF。</p>
+<pre><code>ffmpeg -i input.mkv output.gif
+</code></pre>
+<p>此命令创建与输入文件具有相同尺寸的GIF。这通常不是一个好主意，因为相对于其他视频格式，GIF不能很好地压缩(根据我的经验，GIF将比源视频大8倍)。 使用-s选项将GIF的大小调整为稍微小一些可能会有所帮助，尤其是在输入源非常大的情况下，例如高清视频。</p>
+<h2 id="获取视频信息"><a class="header" href="#获取视频信息">获取视频信息</a></h2>
+<p>有时您需要知道的是媒体文件内部信息，有几种工具可以做到这一点，最简单的是ffprobe工具:</p>
+<pre><code>ffprobe -i input.mp4
+</code></pre>
+<p>比较强大的工具有<a href="https://mediaarea.net/en/MediaInfo">MediaInfo</a>，运行命令<code>mediainfo inputFile.mkv</code>以人类可读的形式输出有关输入文件的信息列表。</p>
+<h2 id="更多"><a class="header" href="#更多">更多</a></h2>
+<p>FFmpeg还有更多更强大的用法，具体请参阅<a href="http://ffmpeg.org/documentation.html">文档</a>。</p>
+<p>如果您使用的是带有图形界面的工具来转换多媒体，那么<a href="https://handbrake.fr/">Handbrake</a>在Linux，Mac OS X和Windows上都是非常好用的。</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p><a href="https://zh.wikipedia.org/wiki/FFmpeg">https://zh.wikipedia.org/wiki/FFmpeg</a></p>
+</div>
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p><a href="https://opensource.com/article/17/6/ffmpeg-convert-media-file-formats">https://opensource.com/article/17/6/ffmpeg-convert-media-file-formats</a></p>
+</div>
+<div class="footnote-definition" id="3"><sup class="footnote-definition-label">3</sup>
+<p><a href="https://blog.csdn.net/coloriy/article/details/47447369">https://blog.csdn.net/coloriy/article/details/47447369</a></p>
+</div>
+<p>tags: #ffmpeg #转码</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vim快捷键"><a class="header" href="#vim快捷键">VIM快捷键</a></h1>
+<h2 id="基本移动"><a class="header" href="#基本移动">基本移动</a></h2>
+<table><thead><tr><th>key</th><th>description</th></tr></thead><tbody>
+<tr><td>h l k j</td><td>左,右一字符;上一行,下一行</td></tr>
+<tr><td>b w</td><td>左,右到一个词或记号</td></tr>
+<tr><td>ge e</td><td>左,右到词或记号的末尾</td></tr>
+<tr><td>{ }</td><td>上,下一段的开始</td></tr>
+<tr><td>( )</td><td>上,下一句的开始</td></tr>
+<tr><td>0 gm</td><td>一行的开始,中间</td></tr>
+<tr><td>^ $</td><td>一行的第一,最后一个字符</td></tr>
+<tr><td><strong>n</strong>G <strong>n</strong>gg</td><td>第<strong>n</strong>行,默认为最后一行,第一行</td></tr>
+<tr><td><strong>n</strong>%</td><td>文件的<strong>n</strong>%(<strong>n</strong>必须指定)</td></tr>
+<tr><td><strong>n|</strong></td><td>当前行的第<strong>n</strong>列</td></tr>
+<tr><td>%</td><td>匹配的括号,注释,#define</td></tr>
+<tr><td><strong>n</strong>H <strong>n</strong>L</td><td>从窗口的开始,末尾算起的第<strong>n</strong>行</td></tr>
+<tr><td>M</td><td>窗口的中间一行</td></tr>
+</tbody></table>
+<h2 id="插入-替换"><a class="header" href="#插入-替换">插入 替换</a></h2>
+<table><thead><tr><th>key</th><th>description</th></tr></thead><tbody>
+<tr><td>i a</td><td>在光标前,后插入</td></tr>
+<tr><td>I A</td><td>在行首,行尾插入</td></tr>
+<tr><td>gI</td><td>在第一列插入</td></tr>
+<tr><td>o O</td><td>在当前行下面,上面插入新行</td></tr>
+<tr><td>r<strong>c</strong></td><td>用<strong>c</strong>替换光标下的字符</td></tr>
+<tr><td>gr<strong>c</strong></td><td>同r,但不影响布局</td></tr>
+<tr><td>R</td><td>从光标处开始替换多个字符</td></tr>
+<tr><td>gR</td><td>同R,但不影响布局</td></tr>
+<tr><td>c<strong>m</strong></td><td>更改到移动命令<strong>m</strong>处的文本</td></tr>
+<tr><td>cc or S</td><td>更改当前行</td></tr>
+<tr><td>C</td><td>更改到行尾</td></tr>
+<tr><td>s</td><td>更改一个字符并插入</td></tr>
+<tr><td>~</td><td>切换大小写并推进光标</td></tr>
+<tr><td>g~<strong>m</strong></td><td>切换大小写到移动命令<strong>m</strong>处的文本</td></tr>
+<tr><td>gu<strong>m</strong> gU<strong>m</strong></td><td>小写化,大写化到移动命令<strong>m</strong>处的文本</td></tr>
+<tr><td>&lt;<strong>m</strong> &gt;<strong>m</strong></td><td>向左,右缩进到移动命令<strong>m</strong>处的文本</td></tr>
+<tr><td><strong>n</strong>&lt;&lt; <strong>n</strong>&gt;&gt;</td><td>向左,右缩进<strong>n</strong>列</td></tr>
+</tbody></table>
+<h2 id="删除"><a class="header" href="#删除">删除</a></h2>
+<table><thead><tr><th>key</th><th>description</th></tr></thead><tbody>
+<tr><td>x X</td><td>删除光标下,光标前的字符</td></tr>
+<tr><td>d<strong>m</strong></td><td>删除到移动命令<strong>m</strong>处</td></tr>
+<tr><td>dd D</td><td>删除当前行,删除到行末</td></tr>
+<tr><td>J gJ</td><td>当前行与下一行合并,不包括空格</td></tr>
+<tr><td>:<strong>r</strong>d</td><td>删除<strong>r</strong>行</td></tr>
+<tr><td>:<strong>r</strong>d<strong>x</strong></td><td>删除<strong>r</strong>行并存入寄存器<strong>x</strong></td></tr>
+</tbody></table>
+<h2 id="插入模式"><a class="header" href="#插入模式">插入模式</a></h2>
+<table><thead><tr><th>key</th><th>description</th></tr></thead><tbody>
+<tr><td>^V<strong>c</strong> ^V<strong>n</strong></td><td>按照字面意思插入<strong>c</strong>,插入十进制字符<strong>n</strong></td></tr>
+<tr><td>^A</td><td>插入上次插入过的文本</td></tr>
+<tr><td>^@</td><td>同^A并且停止插入进入命令模式</td></tr>
+<tr><td>^R<strong>x</strong> ^R^R<strong>x</strong></td><td>插入寄存器<strong>x</strong>的内容,字面意思</td></tr>
+<tr><td>^N ^P</td><td>在光标前,后文本补全</td></tr>
+<tr><td>^W</td><td>删除光标前的词</td></tr>
+<tr><td>^U</td><td>删除所有当前行插入的字符</td></tr>
+<tr><td>^D ^T</td><td>向左,右缩进一个单位长度</td></tr>
+<tr><td>^K<strong>c1c2</strong> or <strong>c1</strong>←<strong>c2</strong></td><td>输入复合字母**\c1,c2**</td></tr>
+<tr><td>^O<strong>c</strong></td><td>临时在命令模式运行命令<strong>c</strong></td></tr>
+<tr><td>^X^E ^X^Y</td><td>向上,下滚动</td></tr>
+<tr><td><esc> or ^[</td><td>取消编辑进入编辑模式</td></tr>
+</tbody></table>
+<h2 id="复制"><a class="header" href="#复制">复制</a></h2>
+<table><thead><tr><th>key</th><th>description</th></tr></thead><tbody>
+<tr><td>&quot;<strong>x</strong></td><td>对下个删除,复制,粘贴操作指定寄存器<strong>x</strong></td></tr>
+<tr><td>:reg</td><td>显示所有寄存器的内容</td></tr>
+<tr><td>:reg <strong>x</strong></td><td>显示寄存器<strong>x</strong>的内容</td></tr>
+<tr><td>y<strong>m</strong></td><td>复制到移动命令<strong>m</strong>处</td></tr>
+<tr><td>yy or Y</td><td>复制当前行到寄存器</td></tr>
+<tr><td>p P</td><td>在光标之后,之前粘贴寄存器内容</td></tr>
+<tr><td>]p [p</td><td>同p,P并自动缩进</td></tr>
+<tr><td>gp gP</td><td>同p,P并把光标置于新文本后</td></tr>
+</tbody></table>
+<h2 id="高级插入"><a class="header" href="#高级插入">高级插入</a></h2>
+<table><thead><tr><th>key</th><th>description</th></tr></thead><tbody>
+<tr><td>g?<strong>m</strong></td><td>到移动命令<strong>m</strong>处执行rot13编码</td></tr>
+<tr><td><strong>n</strong>^A <strong>n</strong>^X</td><td>光标处数字**+n,-n**</td></tr>
+<tr><td>gq<strong>m</strong></td><td>格式化到移动命令<strong>m</strong>的行来修复宽度</td></tr>
+<tr><td>:<strong>r</strong>ce <strong>w</strong></td><td>从范围<strong>r</strong>到宽度<strong>w</strong>的中间行</td></tr>
+<tr><td>:<strong>r</strong>le <strong>i</strong></td><td>范围<strong>r</strong>缩进<strong>i</strong>的左对齐的行</td></tr>
+<tr><td>:<strong>r</strong>ri <strong>w</strong></td><td>范围<strong>r</strong>到宽度<strong>w</strong>的右对齐的行</td></tr>
+<tr><td>!<strong>mc</strong></td><td>通过命令<strong>c</strong>过滤到移动命令<strong>m</strong>处</td></tr>
+<tr><td><strong>n</strong>!!<strong>c</strong></td><td>通过命令<strong>c</strong>过滤<strong>n</strong>行</td></tr>
+<tr><td>:<strong>r</strong>!<strong>c</strong></td><td>通过命令<strong>c</strong>过滤范围<strong>r</strong>行</td></tr>
+</tbody></table>
+<p>tags: #vim</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="免root修改android应用的shared-preferences"><a class="header" href="#免root修改android应用的shared-preferences">免Root修改Android应用的Shared Preferences</a></h1>
+<h2 id="准备工作"><a class="header" href="#准备工作">准备工作</a></h2>
+<ol>
+<li>一台启用调试模式的Android手机,无需root</li>
+<li>一台电脑(本文使用Linux操作系统)</li>
+<li>必备软件(如:adb openssl tar dd star等)</li>
+</ol>
+<h2 id="前言"><a class="header" href="#前言">前言</a></h2>
+<p>本文以破解游戏元气骑士为例进行演示，破解思路来源于<a href="https://resources.infosecinstitute.com/android-hacking-security-part-15-hacking-android-apps-using-backup-techniques/">此处</a></p>
+<h2 id="具体步骤"><a class="header" href="#具体步骤">具体步骤</a></h2>
+<ol>
+<li>
+<p>本文所述教程是在Linux平台进行的,请保证你的电脑有tar, dd, openssl, star组件,其中star从<a href="http://sourceforge.net/projects/adbextractor/">此处</a>下载</p>
+</li>
+<li>
+<p>首先需要通过adb以备份的形式将元气骑士存档数据导出,命令如下:</p>
+<p><code>adb backup com.ChillyRoom.DungeonShooter -f backup.ab</code></p>
+<p>需要在手机上授权备份操作,其中com.ChillyRoom.DungeonShooter是元气骑士的包名,backup.ab是导出的存档的文件名</p>
+</li>
+<li>
+<p>上一步导出的.ab文件是Android备份文件,其中前24字节是文件头,我们需要用dd把前24字节剔除,这样剩下的就是压缩后的tar归档文件,再使用openssl进行解压,可以通过以下命令完成:</p>
+<p><code>dd if=backup.ab bs=24 skip=1 | openssl zlib -d &gt; backup.tar</code></p>
+</li>
+<li>
+<p>现在我们得到了一个打包后的存档文件,现在需要用tar把所有文件的打包顺序记录下来,修改数据之后的打包流程需要用到,使用如下命令:</p>
+<p><code>tar -tf backup.tar &gt; backup.list</code></p>
+<p>保存的list文件名为backup.list</p>
+</li>
+<li>
+<p>现在就可以将tar文件解压了</p>
+<p><code>tar -xf backup.tar</code></p>
+<p>解压完成之后会有一个app目录,下一级是游戏的包名命名的目录,再往下就是分类的所有存档数据,如下所示(一些本次教程用不到的文件被隐藏):</p>
+</li>
+</ol>
+<pre><code>apps
+    └── com.ChillyRoom.DungeonShooter
+        ├── db
+        ├── ef
+        ├── f
+        ├── r
+        └── sp--------&gt;表示Shared Preferences
+            ├── admob.xml
+            ├── appsflyer-data.xml
+            ├── avidly_ads_analysis_key_dic_.xml
+            ├── avidly_ads_sdk.xml
+            ├── cbPrefs.xml
+            ├── com.ChillyRoom.DungeonShooter_preferences.xml
+            ├── com.ChillyRoom.DungeonShooter.v2.playerprefs.xml --&gt;此文件是需要修改的文件
+            ├── com.facebook.ads.FEATURE_CONFIG.xml
+            ├── com.facebook.internal.preferences.APP_SETTINGS.xml
+            ├── com.facebook.sdk.appEventPreferences.xml
+            ├── com.facebook.sdk.attributionTracking.xml
+            ├── com.google.android.gms.analytics.prefs.xml
+            ├── com.google.android.gms.appid.xml
+            ├── com.google.android.gms.measurement.prefs.xml
+            ├── com.google.android.gms.signin.xml
+            ├── com.vungle.sdk.xml
+            ├── DEBUG_PREF.xml
+            ├── FBAdPrefs.xml
+            ├── ktplay.xml
+            ├── SDKIDFA.xml
+            └── WebViewChromiumPrefs.xml
+</code></pre>
+<ol start="6">
+<li>如上所示,我们打开<code>com.ChillyRoom.DungeonShooter.v2.playerprefs.xml</code>文件,根据各个变量的名字我们可以看出一些含意:</li>
+</ol>
+<pre><code>    &lt;string name=&quot;c13_unlock&quot;&gt;false&lt;/string&gt; 
+    变量名中的c为character角色的缩写,这个变量的意义是13号角色是否解锁,这样我们可以通过把指改为true来达到解锁角色的目的
+
+    &lt;int name=&quot;c12_skin3&quot; value=&quot;-1&quot; /&gt; 
+    同理,此处应该为12号角色的3号皮肤,对于值的分析我个人认为如果是2000这样的数值应该为需要花费宝石解锁,为0时是需要花费现金解锁,为-1时是尚未推出的皮肤,为1则为已解锁.这里请自行修改
+    
+    &lt;int name=&quot;last_gems&quot; value=&quot;2123&quot; /&gt;
+    &lt;int name=&quot;gems&quot; value=&quot;2441&quot; /&gt; 
+    这里两个变量是宝石数量,可以自行修改想要的数值
+    
+    其他数据以及其他配置文件的数据请自行发挥,本文不作分析
+</code></pre>
+<ol start="7">
+<li>
+<p>在上一步修改完数据后接下来要做的就是将修改完成的数据导回去,需要用到star工具,下载链接上面已经提到过,命令如下:</p>
+<p><code>star -c -v -f newbackup.tar -no-dirslash list=backup.list</code></p>
+<p>用到了之前导出的列表文件,打包的新文件名为newbackup.tar</p>
+</li>
+<li>
+<p>现在需要用dd把之前剔除的Android备份文件的文件头取出来,使用如下命令:</p>
+<p><code>dd if=backup.ab bs=24 count=1 of=newbackup.ab</code></p>
+<p>把原备份文件backup.ab的文件头保存为newbackup.ab</p>
+</li>
+<li>
+<p>再把修改过的存档文件压缩,前面拼上文件头:</p>
+<p><code>openssl zlib -in newbackup.tar &gt;&gt; newbackup.ab</code></p>
+</li>
+<li>
+<p>大功告成,新的备份文件打包完成,最后一步,把修改过的备份文件newbackup.ab通过adb恢复回去:</p>
+<p><code>adb restore newbackup.ab</code></p>
+</li>
+<li>
+<p>这个时候就可以打开你的游戏查看修改的成果啦!Happy Hacking!</p>
+</li>
+</ol>
+<p>tags: #Android</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="relaying-udp-broadcasts"><a class="header" href="#relaying-udp-broadcasts">Relaying UDP broadcasts</a></h1>
+<p>文章类型为转载<sup class="footnote-reference"><a href="#1">1</a></sup></p>
+<pre><code class="language-shell">iptables -t mangle -A INPUT -i eth0 -d 255.255.255.255 -j TEE --gateway 10.1.1.255
+</code></pre>
+<p>The above <em>iptables</em> rule copies broadcast traffic received on the <em>eth0</em> network interface to another network interface (the one whose broadcast address is 10.1.1.255). Note that this is one-way only. We can't add a second rule for the other direction without creating an infinite packet loop. We need to play tricks with the TTL for that!</p>
+<p>Incoming broadcast packets typically have a TTL of 64 or 128. TEE uses the kernel function <em>nf_dup_ipv4()</em> to copy the packet, which already decrements the TTL if the rule is in INPUT or PREROUTING. Note that a packet with TTL=0 will still be accepted by the destination, but will no longer be routed. But TEE itself does not check for TTL=0 and happily copies such packets. So we need to prevent that too, since what we do is effectively routing.</p>
+<p>The improved rule adds TTL sanity check:</p>
+<pre><code class="language-shell">iptables -t mangle -A INPUT -i eth0 -d 255.255.255.255 -m ttl --ttl-gt 0 -j TEE --gateway 10.1.1.255
+</code></pre>
+<p>If we want to add a rule for the other direction as well...</p>
+<pre><code class="language-shell">iptables -t mangle -A INPUT -i eth1 -d 255.255.255.255 -m ttl --ttl-gt 0 -j TEE --gateway 10.1.0.255
+</code></pre>
+<p>then we easily create a packet loop, since the copy of a packet on <em>eth0</em> will now also match the rule on <em>eth1</em>. To prevent that we need to ensure that the copied packet has TTL=0. We can do that by simply setting the TTL=1 of all incoming broadcasts before passing them to TEE. Then no more loops should occur. The complete rule set for merging a broadcast domain across networks is then:</p>
+<pre><code class="language-shell">iptables -t mangle -A INPUT -i eth0 -d 255.255.255.255 -m ttl --ttl-gt 0 -j TTL --ttl-set 1
+iptables -t mangle -A INPUT -i eth1 -d 255.255.255.255 -m ttl --ttl-gt 0 -j TTL --ttl-set 1
+iptables -t mangle -A INPUT -i eth0 -d 255.255.255.255 -m ttl --ttl-gt 0 -j TEE --gateway 10.1.1.255
+iptables -t mangle -A INPUT -i eth1 -d 255.255.255.255 -m ttl --ttl-gt 0 -j TEE --gateway 10.1.0.255
+</code></pre>
+<p>Make sure to monitor your broadcast traffic to detect any misconfiguration after that change:</p>
+<pre><code class="language-shell">tcpdump -vnpi eth0 ip broadcast
+</code></pre>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p><a href="https://odi.ch/weblog/posting.php?posting=731">https://odi.ch/weblog/posting.php?posting=731</a></p>
+</div>
+<p>tags: #Linux #UDP</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+                        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+                
+    </body>
+</html>

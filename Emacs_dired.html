@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Emacs的文件管理器 - BlacAmDK&#x27;s Blog</title>
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="favicon.svg">
+                        <link rel="shortcut icon" href="favicon.png">
+                <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+                <link rel="stylesheet" href="css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Emacs_dired.html" class="active"><strong aria-hidden="true">2.</strong> Emacs的文件管理器</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 数据结构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Heap_Sort.html"><strong aria-hidden="true">3.1.</strong> 堆</a></li><li class="chapter-item expanded "><a href="Binary_Search_Trees.html"><strong aria-hidden="true">3.2.</strong> 二叉搜索树</a></li><li class="chapter-item expanded "><a href="AVL_Tree.html"><strong aria-hidden="true">3.3.</strong> AVL树</a></li></ol></li><li class="chapter-item expanded "><a href="ffmpeg_convert.html"><strong aria-hidden="true">4.</strong> FFmpeg转码常用操作</a></li><li class="chapter-item expanded "><a href="VIM_Keybinding.html"><strong aria-hidden="true">5.</strong> VIM快捷键</a></li><li class="chapter-item expanded "><a href="Android_Modify_SharedPreferences.html"><strong aria-hidden="true">6.</strong> Android元气骑士修改存档解锁人物</a></li><li class="chapter-item expanded "><a href="Relaying-UDP-Broadcases.html"><strong aria-hidden="true">7.</strong> Relaying UDP broadcasts</a></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">BlacAmDK&#x27;s Blog</h1>
+
+                    <div class="right-buttons">
+                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="emacs的文件管理器"><a class="header" href="#emacs的文件管理器">Emacs的文件管理器</a></h1>
+<h3 id="diredsup-classfootnote-referencea-href11asup"><a class="header" href="#diredsup-classfootnote-referencea-href11asup">dired<sup class="footnote-reference"><a href="#1">1</a></sup></a></h3>
+<p>dired 是 Emacs 自带的文件管理器，操作非常方便，再加上一些扩展之后无疑是一个理想的文件管理器。看看这里来了解如何增强你的 dired 。</p>
+<h3 id="mark--flag"><a class="header" href="#mark--flag">Mark &amp; Flag</a></h3>
+<p>dired 最方便的一点就是可以对许多文件进行标记，并进行批量操作。标记的方 法有很多，最普通的标记就是 d 为当前文件贴上删除标签，之后可以使用 x 来 真正删除所有贴上删除标签的文件。</p>
+<p>dired 还提供了许多预定义的方便的标记操作(当使用 C-u 传递一个前缀参数 时，他们执行相反操作，即去掉标记)，例如：</p>
+<ul>
+<li><code>* *</code> 标记所有可执行文件。</li>
+<li><code>* @</code> 标记所有符号链接。</li>
+<li><code>* /</code> 标记所有目录(不包括 . 和 .. )。</li>
+<li><code>* s</code> 标记所有文件(不高考 . 和 .. )。</li>
+<li><code>* .</code> 标记具有给定扩展名的文件。</li>
+<li><code>% m</code> REGEXP <RET> 或 * % REGEXP <RET> 标记所有匹配到给定的正则表达式 的文件。</li>
+<li><code>% g</code> REGEXP <RET> 标记所有文件 内容 匹配到给定的正则表达式的文件。</li>
+</ul>
+<p>另外，还有一些相关的命令：</p>
+<ul>
+<li><code>u</code> 去除当前行的标记。</li>
+<li><code>&lt;DEL&gt;</code> 上移一行并去除该行的标记。</li>
+<li><code>U</code> 去除所有标记。</li>
+<li><code>* ? MARKCHAR</code> 或 <code>M-&lt;DEL&gt;</code> 去除所有以 MARKCHAR 标记的文件的标记，如果 传递一个前缀参数，则会对每一个文件要求你确认是否去除标记。</li>
+<li><code>t</code> 交换标记，即所有原来标记为 * 的文件被置于未标记状态，原来未标记的 文件被标记为 * ，原来有其他标记的文件不受影响。</li>
+</ul>
+<p>上面的操作都是使用 <code>*</code> 进行标记，但是 dired 可以使用更多的字符进行标记， 只是没有提供相应的快捷键操作而已，你可以先以 <code>*</code> 标记，然后使用 <code>* c OLD-MARKCHAR NEW-MARKCHAR</code> 来把 <code>*</code> 标记变换成其他标记，几乎任何字符(当然不包括中文这种多字节的字符)都可以作为标记，不过空格被特殊对待，用于表示所有未标记的文件。</p>
+<p>列举了这么多命令，多少有些枯燥，作为一个例子，我们来把当前目录下的所有备份文件移动到 <code>~/backup</code> 目录下。假设当前目录已经有一些文件被你以 <code>D</code> 标记，但是暂时还不想删除：</p>
+<ol>
+<li>选择个临时标记，比如 <code>t</code> ，只要保证当前 buffer 里面没有已经存在的 这种标记就行了。</li>
+<li><code>* c D t</code> 把当前所有 <code>D</code> 标签换为 <code>t</code> 标签。</li>
+<li><code>~</code> 以 <code>D</code> 标记所有备份文件。</li>
+<li><code>* c D *</code> 把 <code>D</code> 标签换为 <code>*</code> 标签。</li>
+<li><code>R ~/backup &lt;RET&gt;</code> 来把所有标记为 <code>*</code> 的文件移动到 <code>~/backup</code> 目录里面。</li>
+<li><code>* c t D</code> 恢复原来的 <code>D</code> 标记。</li>
+</ol>
+<p>当然这要假设你原来没有设定其他的 <code>*</code> 标记，要不然你也可以再添加一个临时标记。总之操作和清晰也很方便，感觉像在汇编语言里面使用寄存器一样，大多数批量操作都是针对 <code>*</code> 标记的，所以对某个标记操作之前需要把他先转换为 <code>*</code> 标记。</p>
+<p>另外，还有一个非常强大的标记的方法，绑定到 <code>M-(</code> 或 <code>* (</code> 上。它可以让你使 用断言来决定标记哪些文件。 <code>C-h f dired-mark-sexp RET</code> 可以得到详细的文档。 这个功能非常强大，有点类似于 find 程序，例如，标记所有没有编译的 Elisp 文件(如果编译了，那么会有一个同名，但是扩展名为 <code>.elc</code> 的文件存在) 的方法 是输入这个断言： <code>(and (string-match &quot;\\.el$&quot; name) (not (file-exists-p (concat name &quot;c&quot;)))) </code>。</p>
+<h3 id="文件操作"><a class="header" href="#文件操作">文件操作</a></h3>
+<p>dired 内建了很多文件操作，对于操作的文件有一个统一的约定，按照顺序是：</p>
+<ol>
+<li>如果你通过 <code>C-u</code> 传递一个前缀参数 <code>N</code> ，那么它对从当前行开始的 <code>N</code> 行执行操作(<code>N</code>也可以是负数)。</li>
+<li>如果有被标记为 <code>*</code> 的文件，则以这些文件为操作对象。</li>
+<li>只对当前光标所在的文件进行操作。</li>
+</ol>
+<h4 id="常用操作"><a class="header" href="#常用操作">常用操作</a></h4>
+<p>这些命令全部绑定到大写字母上，记忆也非常方便：</p>
+<ul>
+<li><code>C</code> 拷贝文件。把 <code>dired-recursive-copies</code> 设为非 <code>nil</code> 的值可以递归拷贝目录，通常我们设定为 <code>top</code> ，这表示对于顶层目录 dired 会先进行询问是否要递归拷贝，而其中的子目录则不再询问。如果嫌询问太麻烦，可以直接设置为 <code>always</code> 。</li>
+<li><code>D</code> 删除文件。类似的有一个 <code>dired-recursive-deletes</code> 变量可以控制递归删 除。</li>
+<li><code>R</code> 重命名文件，也就是移动文件。</li>
+<li><code>H</code> 创建硬链接。</li>
+<li><code>S</code> 创建软链接。</li>
+<li><code>M</code> 修改权限位，即 shell 里面的 chmod 命令。</li>
+<li><code>G</code> 修改文件所属的组。</li>
+<li><code>O</code> 修改文件的所有者。</li>
+<li><code>T</code> 修改文件的修改时间，类似于 shell 命令 touch 。</li>
+<li><code>P</code> 打印文件。</li>
+<li><code>Z</code> 压缩或解压文件。</li>
+<li><code>L</code> 把 Elisp 文件加载进 Emacs 。</li>
+<li><code>B</code> 对 Elisp 文件进行 Byte compile 。</li>
+<li><code>A</code> 对文件内容进行正则表达式搜索，搜索会在第一个匹配的地方停下，然后 可以使用 M-, 搜索下一个匹配。</li>
+<li><code>Q</code> 对文件内容进行交互式的正则表达式替换。</li>
+</ul>
+<h4 id="shell-命令"><a class="header" href="#shell-命令">shell 命令</a></h4>
+<p>除了这些操作，还可以使用 <code>!</code> 来执行 shell 命令。这里介绍了自动猜测 shell 命令的办法，就类似于通常的文件管理器里面以关联的程序打开了。</p>
+<h4 id="强大的重命名功能"><a class="header" href="#强大的重命名功能">强大的重命名功能</a></h4>
+<p>dired 有一个文件名转换的理念，所以转换，并不一定是重命名，还可以是复制和创建链接。所以，除了 <code>% u</code> 和 <code>% l</code> 重命名原文件为大写、小写外，一个使用正则表达式进行转换的命令提供了四个选项： <code>% X</code> 其中 <code>X</code> 可以是 <code>R</code> , <code>C</code> , <code>H</code> 和 <code>S</code> ，分别代表重命名、复制、创建硬链接和创建软链接，他们使用匹配和替换的机制，这有点像 rename 这个程序，例如： <code>% R \.[^.]*$ &lt;RET&gt; .1\&amp; &lt;RET&gt;</code> 给原来的文件名加个标号 1 ，把 <code>foo.txt</code> 变成 <code>foo.1.txt</code> 。</p>
+<p>另外，dired 还有一个叫做 Wdired 的扩展可以直接在 dired 的 buffer 里面编辑文件名来达到重命名的效果。使用 <code>M-x wdired-change-to-wdired-mode</code> 进入编辑模式，这个时候可以直接像编辑普通文本一样编辑文件名，还可以添加路径来实现把文件移动到其他目录。除了文件名可以编辑以外，其他部分被标记为只读，但是如果把 <code>wdired-allow-to-change-permissions</code> 设为 t 的话，还可以编辑文件的权限位。编辑完成之后使用 <code>C-c C-c</code> 来应用所做的编辑。非常方便。</p>
+<h3 id="排序和过滤"><a class="header" href="#排序和过滤">排序和过滤</a></h3>
+<p>用 <code>C-u s</code> 可以编辑 dired 的 <code>dired-listing-switches</code> 这个变量，从而达到控制排序的方法的目的。
+另外 dired 还有一个 <code>k</code> 用于去掉不想显示出来的文件，它并不删除磁盘上的文件，只是临 时从 dired 的 buffer 中去掉他们， <code>g</code> 刷新一下它们又会显示出来，这样，首先用强大的标记功能进行标记，然后使用 <code>k</code> 去掉，就实现了过滤的功能。</p>
+<h3 id="子目录操作"><a class="header" href="#子目录操作">子目录操作</a></h3>
+<p>dired 允许同时操作当前目录和子目录。在 <code>dired-listing-switches</code> 里面加入 <code>R</code> 选项就可以显示子目录，如果只是想临时显示某个子目录的内容，对该目录执 行 <code>i</code> 操作就会把该子目录的内容添加到 dired 当前 buffer 的末尾并把光标移 动到那里，dired 在移动之前会先设置一个 mark ，所以可以使用 <code>C-u C-&lt;SPC&gt;</code>。 </p>
+<h3 id="其他功能"><a class="header" href="#其他功能">其他功能</a></h3>
+<p>还有一些方便的功能，我把几个常用的命令列在这里：</p>
+<ul>
+<li><code>+</code> 创建目录</li>
+<li><code>w</code> 复制文件名，如果通过 <code>C-u</code> 传递一个前缀参数 <code>0</code> ，则复制决定路径名， 如果只是 <code>C-u</code> 则复制相对于 dired 当前目录的相对路径。</li>
+<li><code>I</code> 把当前文件以 info 文档的格式打开。</li>
+<li><code>N</code> 把当前文件以 man 格式打开(使用 WoMan)。</li>
+<li><code>Y</code> 为所有标记的文件创建一个到指定目录的相对符号连接(即使用相对路径进 行引用，而不是绝对路径)。</li>
+</ul>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p><a href="http://lifegoo.pluskid.org/wiki/EmacsAsFileManger.html">http://lifegoo.pluskid.org/wiki/EmacsAsFileManger.html</a></p>
+</div>
+<p>tags: #emacs #dired</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="chapter_1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+                                                    <a rel="next" href="Heap_Sort.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="chapter_1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+                                    <a rel="next" href="Heap_Sort.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        
+    </body>
+</html>
