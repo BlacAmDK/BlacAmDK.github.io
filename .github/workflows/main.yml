@@ -1,0 +1,32 @@
+name: Main
+ 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+    
+      - name: curl mdbook.tar.gz
+        run: curl -L https://github.com/rust-lang/mdBook/releases/download/v0.4.12/mdbook-v0.4.12-x86_64-unknown-linux-gnu.tar.gz > ./mdbook.tar.gz
+
+      - name: tar mdbook
+        run: tar -zxvf ./mdbook.tar.gz
+      
+      - name: mdbook build
+        run: ./mdbook build
+
+      - name: deploy github pages
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: book
