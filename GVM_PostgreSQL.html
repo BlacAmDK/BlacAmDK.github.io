@@ -3,9 +3,8 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title></title>
-                        <base href="/">
-        
+        <title>Kali Linux升级GVM时PG数据库问题 - BlacAmDK&#x27;s Blog</title>
+                
 
         <!-- Custom HTML head -->
         
@@ -83,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Emacs_dired.html"><strong aria-hidden="true">2.</strong> Emacs的文件管理器</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 数据结构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Heap_Sort.html"><strong aria-hidden="true">3.1.</strong> 堆</a></li><li class="chapter-item expanded "><a href="Binary_Search_Trees.html"><strong aria-hidden="true">3.2.</strong> 二叉搜索树</a></li><li class="chapter-item expanded "><a href="AVL_Tree.html"><strong aria-hidden="true">3.3.</strong> AVL树</a></li></ol></li><li class="chapter-item expanded "><a href="ffmpeg_convert.html"><strong aria-hidden="true">4.</strong> FFmpeg转码常用操作</a></li><li class="chapter-item expanded "><a href="VIM_Keybinding.html"><strong aria-hidden="true">5.</strong> VIM快捷键</a></li><li class="chapter-item expanded "><a href="Android_Modify_SharedPreferences.html"><strong aria-hidden="true">6.</strong> Android元气骑士修改存档解锁人物</a></li><li class="chapter-item expanded "><a href="Relaying-UDP-Broadcases.html"><strong aria-hidden="true">7.</strong> Relaying UDP broadcasts</a></li><li class="chapter-item expanded "><a href="GVM_PostgreSQL.html"><strong aria-hidden="true">8.</strong> Kali Linux升级GVM时PG数据库问题</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Emacs_dired.html"><strong aria-hidden="true">2.</strong> Emacs的文件管理器</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 数据结构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Heap_Sort.html"><strong aria-hidden="true">3.1.</strong> 堆</a></li><li class="chapter-item expanded "><a href="Binary_Search_Trees.html"><strong aria-hidden="true">3.2.</strong> 二叉搜索树</a></li><li class="chapter-item expanded "><a href="AVL_Tree.html"><strong aria-hidden="true">3.3.</strong> AVL树</a></li></ol></li><li class="chapter-item expanded "><a href="ffmpeg_convert.html"><strong aria-hidden="true">4.</strong> FFmpeg转码常用操作</a></li><li class="chapter-item expanded "><a href="VIM_Keybinding.html"><strong aria-hidden="true">5.</strong> VIM快捷键</a></li><li class="chapter-item expanded "><a href="Android_Modify_SharedPreferences.html"><strong aria-hidden="true">6.</strong> Android元气骑士修改存档解锁人物</a></li><li class="chapter-item expanded "><a href="Relaying-UDP-Broadcases.html"><strong aria-hidden="true">7.</strong> Relaying UDP broadcasts</a></li><li class="chapter-item expanded "><a href="GVM_PostgreSQL.html" class="active"><strong aria-hidden="true">8.</strong> Kali Linux升级GVM时PG数据库问题</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -144,13 +143,80 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="document-not-found-404"><a class="header" href="#document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h1 id="kali-linux升级gvm时pg数据库问题"><a class="header" href="#kali-linux升级gvm时pg数据库问题">Kali Linux升级GVM时PG数据库问题</a></h1>
+<h2 id="开门见山"><a class="header" href="#开门见山">开门见山</a></h2>
+<p>升级Kali Linux系统后, GVM扫描器无法启动, 运行<code>gvm-check-setup</code>后提示PostgreSQL版本有问题, 如下所示:</p>
+<pre><code>gvm-check-setup 22.4.0
+  Test completeness and readiness of GVM-22.4.0
+Step 1: Checking OpenVAS (Scanner)... 
+        OK: OpenVAS Scanner is present in version 22.4.0.
+        OK: Notus Scanner is present in version 22.4.1.
+        OK: Server CA Certificate is present as /var/lib/gvm/CA/servercert.pem.
+Checking permissions of /var/lib/openvas/gnupg/*
+        OK: _gvm owns all files in /var/lib/openvas/gnupg
+        OK: redis-server is present.
+        OK: scanner (db_address setting) is configured properly using the redis-server socket: /var/run/redis-openvas/redis-server.sock
+        OK: redis-server is running and listening on socket: /var/run/redis-openvas/redis-server.sock.
+        OK: redis-server configuration is OK and redis-server is running.
+        OK: the mqtt_server_uri is defined in /etc/openvas/openvas.conf
+        OK: _gvm owns all files in /var/lib/openvas/plugins
+        OK: NVT collection in /var/lib/openvas/plugins contains 83468 NVTs.
+        OK: The notus directory /var/lib/notus/products contains 377 NVTs.
+Checking that the obsolete redis database has been removed
+        OK: No old Redis DB
+        OK: ospd-OpenVAS is present in version 22.4.0.
+Step 2: Checking GVMD Manager ... 
+        OK: GVM Manager (gvmd) is present in version 22.4.0~dev1.
+Step 3: Checking Certificates ... 
+        OK: GVM client certificate is valid and present as /var/lib/gvm/CA/clientcert.pem.
+        OK: Your GVM certificate infrastructure passed validation.
+Step 4: Checking data ... 
+        OK: SCAP data found in /var/lib/gvm/scap-data.
+        OK: CERT data found in /var/lib/gvm/cert-data.
+Step 5: Checking Postgresql DB and user ... 
+        ERROR: The default postgresql version is not the one used for gvmd compilation: (14, need 15).
+        FIX: Please use pg_upgradecluster to upgrade your postgresql installation
+
+ ERROR: Your GVM-22.4.0 installation is not yet complete!
+
+Please follow the instructions marked with FIX above and run this
+script again.
+</code></pre>
+<p>首先停止PostgreSQL服务</p>
+<pre><code>sudo systemctl stop postgresql
+</code></pre>
+<p>然后根据系统升级前后的PostgreSQL版本, 例如之前为14, 升级后为15, 并且确保没有任何有用的数据存储在15版本上, 执行如下命令删除15版本的cluster(注意!会删除15版本的数据!)</p>
+<pre><code>sudo pg_dropcluster --stop 15 main
+</code></pre>
+<p>然后使用以下命令进行迁移</p>
+<pre><code>sudo pg_upgradecluster 14 main
+</code></pre>
+<p>之后根据gvm-check-setup推荐的步骤继续进行即可</p>
+<h2 id="登陆相关"><a class="header" href="#登陆相关">登陆相关</a></h2>
+<p>使用如下命令查看账户</p>
+<pre><code>sudo runuser -u _gvm -- gvmd --get-users
+</code></pre>
+<p>如果您看到您的帐户但无法登录，您可以运行此命令来重置密码</p>
+<pre><code>sudo runuser -u _gvm -- gvmd --user=admin --new-password=NEWPASSWORD
+</code></pre>
+<p>如果重置密码后无法登录，可以尝试运行以下命令重启gvm服务</p>
+<pre><code>sudo systemctl restart gvmd
+</code></pre>
+<p>您还可以创建一个新的 GVM 用户，运行以下命令</p>
+<pre><code>sudo runuser -u _gvm -- gvmd --create-user=USER --new-password=NEWPASSWORD
+</code></pre>
+<p>要删除 GVM 用户，可以运行以下命令</p>
+<pre><code>sudo runuser -u _gvm -- gvmd --delete-user=USER
+</code></pre>
+<p>tags: #Kali #GVM</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="Relaying-UDP-Broadcases.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
                         
                         
                         <div style="clear: both"></div>
@@ -159,6 +225,9 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="Relaying-UDP-Broadcases.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
                 
                             </nav>
 
