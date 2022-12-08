@@ -10,5 +10,6 @@
 - [VIM快捷键](./VIM_Keybinding.md)
 - [Android元气骑士修改存档解锁人物](./Android_Modify_SharedPreferences.md)
 - [Relaying UDP broadcasts](./Relaying-UDP-Broadcases.md)
+- [Kali Linux升级GVM时PG数据库问题](./GVM_PostgreSQL.md)
 
 
