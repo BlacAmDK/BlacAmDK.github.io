@@ -3,6 +3,10 @@
 
 FFmpeg 是一个自由软件，可以运行音频和视频多种格式的录影、转换、流功能，包含了libavcodec——这是一个用于多个项目中音频和视频的解码器库，以及libavformat——一个音频与视频格式转换库。 “FFmpeg”这个单词中的“FF”指的是“Fast Forward”。
 
+## 自动化工具
+
+下面是一个用来生成参数的在线工具: [FFmpeg Commander](https://alfg.dev/ffmpeg-commander/)
+
 ## 基本转换[^2]
 FFmpeg的默认设置相当聪明，通常它会自动选择正确的编解码器和容器而无需任何复杂的配置。
 
