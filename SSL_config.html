@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Chapter 1 - BlacAmDK&#x27;s Blog</title>
+        <title>SSL算法配置 - BlacAmDK&#x27;s Blog</title>
                 
 
         <!-- Custom HTML head -->
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Emacs_dired.html"><strong aria-hidden="true">2.</strong> Emacs的文件管理器</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 数据结构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Heap_Sort.html"><strong aria-hidden="true">3.1.</strong> 堆</a></li><li class="chapter-item expanded "><a href="Binary_Search_Trees.html"><strong aria-hidden="true">3.2.</strong> 二叉搜索树</a></li><li class="chapter-item expanded "><a href="AVL_Tree.html"><strong aria-hidden="true">3.3.</strong> AVL树</a></li></ol></li><li class="chapter-item expanded "><a href="ffmpeg_convert.html"><strong aria-hidden="true">4.</strong> FFmpeg转码常用操作</a></li><li class="chapter-item expanded "><a href="VIM_Keybinding.html"><strong aria-hidden="true">5.</strong> VIM快捷键</a></li><li class="chapter-item expanded "><a href="Android_Modify_SharedPreferences.html"><strong aria-hidden="true">6.</strong> Android元气骑士修改存档解锁人物</a></li><li class="chapter-item expanded "><a href="Relaying-UDP-Broadcases.html"><strong aria-hidden="true">7.</strong> Relaying UDP broadcasts</a></li><li class="chapter-item expanded "><a href="GVM_PostgreSQL.html"><strong aria-hidden="true">8.</strong> Kali Linux升级GVM时PG数据库问题</a></li><li class="chapter-item expanded "><a href="SSL_config.html"><strong aria-hidden="true">9.</strong> SSL算法配置</a></li><li class="chapter-item expanded "><a href="XPath.html"><strong aria-hidden="true">10.</strong> XPath提取元素</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Emacs_dired.html"><strong aria-hidden="true">2.</strong> Emacs的文件管理器</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 数据结构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Heap_Sort.html"><strong aria-hidden="true">3.1.</strong> 堆</a></li><li class="chapter-item expanded "><a href="Binary_Search_Trees.html"><strong aria-hidden="true">3.2.</strong> 二叉搜索树</a></li><li class="chapter-item expanded "><a href="AVL_Tree.html"><strong aria-hidden="true">3.3.</strong> AVL树</a></li></ol></li><li class="chapter-item expanded "><a href="ffmpeg_convert.html"><strong aria-hidden="true">4.</strong> FFmpeg转码常用操作</a></li><li class="chapter-item expanded "><a href="VIM_Keybinding.html"><strong aria-hidden="true">5.</strong> VIM快捷键</a></li><li class="chapter-item expanded "><a href="Android_Modify_SharedPreferences.html"><strong aria-hidden="true">6.</strong> Android元气骑士修改存档解锁人物</a></li><li class="chapter-item expanded "><a href="Relaying-UDP-Broadcases.html"><strong aria-hidden="true">7.</strong> Relaying UDP broadcasts</a></li><li class="chapter-item expanded "><a href="GVM_PostgreSQL.html"><strong aria-hidden="true">8.</strong> Kali Linux升级GVM时PG数据库问题</a></li><li class="chapter-item expanded "><a href="SSL_config.html" class="active"><strong aria-hidden="true">9.</strong> SSL算法配置</a></li><li class="chapter-item expanded "><a href="XPath.html"><strong aria-hidden="true">10.</strong> XPath提取元素</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -143,15 +143,34 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="chapter-1"><a class="header" href="#chapter-1">Chapter 1</a></h1>
-<p>请查看左侧菜单来访问更多文章</p>
+                        <h1 id="ssl加密算法配置"><a class="header" href="#ssl加密算法配置">SSL加密算法配置</a></h1>
+<h2 id="相关资料"><a class="header" href="#相关资料">相关资料</a></h2>
+<p>RFC文档中有推荐的和不应使用的加密算法(第4节)
+<a href="https://www.rfc-editor.org/rfc/rfc9142.html">RFC 9142 Key Exchange (KEX) Method Updates and Recommendations for Secure Shell (SSH)</a></p>
+<p>SSL配置文件生成器, 可以根据安全级别和应用软件版本生成对应的配置文件
+<a href="https://ssl-config.mozilla.org/">SSL Configuration Generator SSL Config Generator</a></p>
+<h2 id="外部扫描"><a class="header" href="#外部扫描">外部扫描</a></h2>
+<p>可以使用nmap script</p>
+<pre><code>nmap -p22 &lt;ip&gt; -sC # Send default nmap scripts for SSH
+nmap -p22 &lt;ip&gt; -sV # Retrieve version
+nmap -p22 &lt;ip&gt; --script ssh2-enum-algos # Retrieve supported algorythms 
+nmap -p22 &lt;ip&gt; --script ssh-hostkey --script-args ssh_hostkey=full # Retrieve weak keys
+nmap -p22 &lt;ip&gt; --script ssh-auth-methods --script-args=&quot;ssh.user=root&quot; # Check authentication methods
+</code></pre>
+<p>或者metasploit</p>
+<pre><code>msf&gt; use scanner/ssh/ssh_enumusers
+</code></pre>
+<p>tags: #SSL</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="GVM_PostgreSQL.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
                         
-                                                    <a rel="next" href="Emacs_dired.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next" href="XPath.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -161,8 +180,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="GVM_PostgreSQL.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
                 
-                                    <a rel="next" href="Emacs_dired.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next" href="XPath.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                             </nav>

@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Emacs_dired.html"><strong aria-hidden="true">2.</strong> Emacs的文件管理器</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 数据结构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Heap_Sort.html"><strong aria-hidden="true">3.1.</strong> 堆</a></li><li class="chapter-item expanded "><a href="Binary_Search_Trees.html"><strong aria-hidden="true">3.2.</strong> 二叉搜索树</a></li><li class="chapter-item expanded "><a href="AVL_Tree.html"><strong aria-hidden="true">3.3.</strong> AVL树</a></li></ol></li><li class="chapter-item expanded "><a href="ffmpeg_convert.html"><strong aria-hidden="true">4.</strong> FFmpeg转码常用操作</a></li><li class="chapter-item expanded "><a href="VIM_Keybinding.html"><strong aria-hidden="true">5.</strong> VIM快捷键</a></li><li class="chapter-item expanded "><a href="Android_Modify_SharedPreferences.html"><strong aria-hidden="true">6.</strong> Android元气骑士修改存档解锁人物</a></li><li class="chapter-item expanded "><a href="Relaying-UDP-Broadcases.html"><strong aria-hidden="true">7.</strong> Relaying UDP broadcasts</a></li><li class="chapter-item expanded "><a href="GVM_PostgreSQL.html"><strong aria-hidden="true">8.</strong> Kali Linux升级GVM时PG数据库问题</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Emacs_dired.html"><strong aria-hidden="true">2.</strong> Emacs的文件管理器</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 数据结构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Heap_Sort.html"><strong aria-hidden="true">3.1.</strong> 堆</a></li><li class="chapter-item expanded "><a href="Binary_Search_Trees.html"><strong aria-hidden="true">3.2.</strong> 二叉搜索树</a></li><li class="chapter-item expanded "><a href="AVL_Tree.html"><strong aria-hidden="true">3.3.</strong> AVL树</a></li></ol></li><li class="chapter-item expanded "><a href="ffmpeg_convert.html"><strong aria-hidden="true">4.</strong> FFmpeg转码常用操作</a></li><li class="chapter-item expanded "><a href="VIM_Keybinding.html"><strong aria-hidden="true">5.</strong> VIM快捷键</a></li><li class="chapter-item expanded "><a href="Android_Modify_SharedPreferences.html"><strong aria-hidden="true">6.</strong> Android元气骑士修改存档解锁人物</a></li><li class="chapter-item expanded "><a href="Relaying-UDP-Broadcases.html"><strong aria-hidden="true">7.</strong> Relaying UDP broadcasts</a></li><li class="chapter-item expanded "><a href="GVM_PostgreSQL.html"><strong aria-hidden="true">8.</strong> Kali Linux升级GVM时PG数据库问题</a></li><li class="chapter-item expanded "><a href="SSL_config.html"><strong aria-hidden="true">9.</strong> SSL算法配置</a></li><li class="chapter-item expanded "><a href="XPath.html"><strong aria-hidden="true">10.</strong> XPath提取元素</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -573,6 +573,8 @@ public class HeapSort {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ffmpeg转码常用操作"><a class="header" href="#ffmpeg转码常用操作">FFmpeg转码常用操作</a></h1>
 <h2 id="简介sup-classfootnote-referencea-href11asup"><a class="header" href="#简介sup-classfootnote-referencea-href11asup">简介<sup class="footnote-reference"><a href="#1">1</a></sup></a></h2>
 <p>FFmpeg 是一个自由软件，可以运行音频和视频多种格式的录影、转换、流功能，包含了libavcodec——这是一个用于多个项目中音频和视频的解码器库，以及libavformat——一个音频与视频格式转换库。 “FFmpeg”这个单词中的“FF”指的是“Fast Forward”。</p>
+<h2 id="自动化工具"><a class="header" href="#自动化工具">自动化工具</a></h2>
+<p>下面是一个用来生成参数的在线工具: <a href="https://alfg.dev/ffmpeg-commander/">FFmpeg Commander</a></p>
 <h2 id="基本转换sup-classfootnote-referencea-href22asup"><a class="header" href="#基本转换sup-classfootnote-referencea-href22asup">基本转换<sup class="footnote-reference"><a href="#2">2</a></sup></a></h2>
 <p>FFmpeg的默认设置相当聪明，通常它会自动选择正确的编解码器和容器而无需任何复杂的配置。</p>
 <p>例如，假设您有一个MP3文件并希望将其转换为OGG文件:</p>
@@ -949,6 +951,36 @@ script again.
 <pre><code>sudo runuser -u _gvm -- gvmd --delete-user=USER
 </code></pre>
 <p>tags: #Kali #GVM</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ssl加密算法配置"><a class="header" href="#ssl加密算法配置">SSL加密算法配置</a></h1>
+<h2 id="相关资料"><a class="header" href="#相关资料">相关资料</a></h2>
+<p>RFC文档中有推荐的和不应使用的加密算法(第4节)
+<a href="https://www.rfc-editor.org/rfc/rfc9142.html">RFC 9142 Key Exchange (KEX) Method Updates and Recommendations for Secure Shell (SSH)</a></p>
+<p>SSL配置文件生成器, 可以根据安全级别和应用软件版本生成对应的配置文件
+<a href="https://ssl-config.mozilla.org/">SSL Configuration Generator SSL Config Generator</a></p>
+<h2 id="外部扫描"><a class="header" href="#外部扫描">外部扫描</a></h2>
+<p>可以使用nmap script</p>
+<pre><code>nmap -p22 &lt;ip&gt; -sC # Send default nmap scripts for SSH
+nmap -p22 &lt;ip&gt; -sV # Retrieve version
+nmap -p22 &lt;ip&gt; --script ssh2-enum-algos # Retrieve supported algorythms 
+nmap -p22 &lt;ip&gt; --script ssh-hostkey --script-args ssh_hostkey=full # Retrieve weak keys
+nmap -p22 &lt;ip&gt; --script ssh-auth-methods --script-args=&quot;ssh.user=root&quot; # Check authentication methods
+</code></pre>
+<p>或者metasploit</p>
+<pre><code>msf&gt; use scanner/ssh/ssh_enumusers
+</code></pre>
+<p>tags: #SSL</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="xpath提取元素"><a class="header" href="#xpath提取元素">XPath提取元素</a></h1>
+<h2 id="查询"><a class="header" href="#查询">查询</a></h2>
+<p>使用xmllint或者XMLStarlet工具可以在terminal对html/xml文件进行操作, xmllint需要--html参数启用html解析器, 以下则以XMLStarlet为例进行说明:
+由于在我的系统上xmlstarlet程序有名为xml的符号链接, 所以下文以xml代替</p>
+<pre><code>xml fo -H -R input.html 2&gt;/dev/null | xml sel -t -v '//*[@class=&quot;odd&quot;]' -c '(//*[text()=&quot;IP&quot;])[1]/../following-sibling::td' -n
+</code></pre>
+<p>首先需要使用fo(format)子命令加上-H(HTML格式解析)与-R(尝试进行文件修复)对html文档进行处理, 并忽略所有警告信息
+之后使用普通的sel(select)对元素进行查询</p>
+<p>下面提供XPath的语法文档和XMLStarlet的官方文档链接:
+<a href="https://xmlstar.sourceforge.net/docs.php">XMLStarlet Command Line XML Toolkit</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/XPath#documentation">XPath Docs</a></p>
+<p>tags: #XPath</p>
 
                     </main>
 

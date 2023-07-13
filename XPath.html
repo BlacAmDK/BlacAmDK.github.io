@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Chapter 1 - BlacAmDK&#x27;s Blog</title>
+        <title>XPath提取元素 - BlacAmDK&#x27;s Blog</title>
                 
 
         <!-- Custom HTML head -->
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Emacs_dired.html"><strong aria-hidden="true">2.</strong> Emacs的文件管理器</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 数据结构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Heap_Sort.html"><strong aria-hidden="true">3.1.</strong> 堆</a></li><li class="chapter-item expanded "><a href="Binary_Search_Trees.html"><strong aria-hidden="true">3.2.</strong> 二叉搜索树</a></li><li class="chapter-item expanded "><a href="AVL_Tree.html"><strong aria-hidden="true">3.3.</strong> AVL树</a></li></ol></li><li class="chapter-item expanded "><a href="ffmpeg_convert.html"><strong aria-hidden="true">4.</strong> FFmpeg转码常用操作</a></li><li class="chapter-item expanded "><a href="VIM_Keybinding.html"><strong aria-hidden="true">5.</strong> VIM快捷键</a></li><li class="chapter-item expanded "><a href="Android_Modify_SharedPreferences.html"><strong aria-hidden="true">6.</strong> Android元气骑士修改存档解锁人物</a></li><li class="chapter-item expanded "><a href="Relaying-UDP-Broadcases.html"><strong aria-hidden="true">7.</strong> Relaying UDP broadcasts</a></li><li class="chapter-item expanded "><a href="GVM_PostgreSQL.html"><strong aria-hidden="true">8.</strong> Kali Linux升级GVM时PG数据库问题</a></li><li class="chapter-item expanded "><a href="SSL_config.html"><strong aria-hidden="true">9.</strong> SSL算法配置</a></li><li class="chapter-item expanded "><a href="XPath.html"><strong aria-hidden="true">10.</strong> XPath提取元素</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Emacs_dired.html"><strong aria-hidden="true">2.</strong> Emacs的文件管理器</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 数据结构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Heap_Sort.html"><strong aria-hidden="true">3.1.</strong> 堆</a></li><li class="chapter-item expanded "><a href="Binary_Search_Trees.html"><strong aria-hidden="true">3.2.</strong> 二叉搜索树</a></li><li class="chapter-item expanded "><a href="AVL_Tree.html"><strong aria-hidden="true">3.3.</strong> AVL树</a></li></ol></li><li class="chapter-item expanded "><a href="ffmpeg_convert.html"><strong aria-hidden="true">4.</strong> FFmpeg转码常用操作</a></li><li class="chapter-item expanded "><a href="VIM_Keybinding.html"><strong aria-hidden="true">5.</strong> VIM快捷键</a></li><li class="chapter-item expanded "><a href="Android_Modify_SharedPreferences.html"><strong aria-hidden="true">6.</strong> Android元气骑士修改存档解锁人物</a></li><li class="chapter-item expanded "><a href="Relaying-UDP-Broadcases.html"><strong aria-hidden="true">7.</strong> Relaying UDP broadcasts</a></li><li class="chapter-item expanded "><a href="GVM_PostgreSQL.html"><strong aria-hidden="true">8.</strong> Kali Linux升级GVM时PG数据库问题</a></li><li class="chapter-item expanded "><a href="SSL_config.html"><strong aria-hidden="true">9.</strong> SSL算法配置</a></li><li class="chapter-item expanded "><a href="XPath.html" class="active"><strong aria-hidden="true">10.</strong> XPath提取元素</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -143,17 +143,27 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="chapter-1"><a class="header" href="#chapter-1">Chapter 1</a></h1>
-<p>请查看左侧菜单来访问更多文章</p>
+                        <h1 id="xpath提取元素"><a class="header" href="#xpath提取元素">XPath提取元素</a></h1>
+<h2 id="查询"><a class="header" href="#查询">查询</a></h2>
+<p>使用xmllint或者XMLStarlet工具可以在terminal对html/xml文件进行操作, xmllint需要--html参数启用html解析器, 以下则以XMLStarlet为例进行说明:
+由于在我的系统上xmlstarlet程序有名为xml的符号链接, 所以下文以xml代替</p>
+<pre><code>xml fo -H -R input.html 2&gt;/dev/null | xml sel -t -v '//*[@class=&quot;odd&quot;]' -c '(//*[text()=&quot;IP&quot;])[1]/../following-sibling::td' -n
+</code></pre>
+<p>首先需要使用fo(format)子命令加上-H(HTML格式解析)与-R(尝试进行文件修复)对html文档进行处理, 并忽略所有警告信息
+之后使用普通的sel(select)对元素进行查询</p>
+<p>下面提供XPath的语法文档和XMLStarlet的官方文档链接:
+<a href="https://xmlstar.sourceforge.net/docs.php">XMLStarlet Command Line XML Toolkit</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/XPath#documentation">XPath Docs</a></p>
+<p>tags: #XPath</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
-                                                    <a rel="next" href="Emacs_dired.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                                                    <a rel="prev" href="SSL_config.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
                             </a>
+                        
                         
                         <div style="clear: both"></div>
                     </nav>
@@ -161,10 +171,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
-                                    <a rel="next" href="Emacs_dired.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                                    <a rel="prev" href="SSL_config.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
                     </a>
+                
                             </nav>
 
         </div>
