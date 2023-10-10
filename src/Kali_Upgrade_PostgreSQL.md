@@ -1,6 +1,5 @@
-# Kali Linux升级GVM时PG数据库问题
-
-## 开门见山
+# Kali Linux升级时PG数据库相关问题
+## GVM升级问题
 
 升级Kali Linux系统后, GVM扫描器无法启动, 运行`gvm-check-setup`后提示PostgreSQL版本有问题, 如下所示:
 ````
@@ -36,7 +35,7 @@ Step 5: Checking Postgresql DB and user ...
         FIX: Please use pg_upgradecluster to upgrade your postgresql installation
 
  ERROR: Your GVM-22.4.0 installation is not yet complete!
-
+ 
 Please follow the instructions marked with FIX above and run this
 script again.
 ````
@@ -55,7 +54,7 @@ script again.
 
 之后根据gvm-check-setup推荐的步骤继续进行即可
 
-## 登陆相关
+### 登录相关
 
 使用如下命令查看账户
 
@@ -78,4 +77,24 @@ script again.
     sudo runuser -u _gvm -- gvmd --delete-user=USER
 
 
-tags: #Kali #GVM
+
+## Metasploit升级问题
+
+```
+DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.37.
+
+HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE msf REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+```
+
+修复方式:
+
+```
+sudo -u postgres psql -U postgres -d msf
+
+REINDEX DATABASE msf;
+
+ALTER DATABASE msf REFRESH COLLATION VERSION;
+```
+
+
+tags: #Kali #PostgreSQL
