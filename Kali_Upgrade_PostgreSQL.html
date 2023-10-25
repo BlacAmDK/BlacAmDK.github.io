@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Kali Linux升级GVM时PG数据库问题 - BlacAmDK&#x27;s Blog</title>
+        <title>Kali Linux升级时PG数据库相关问题 - BlacAmDK&#x27;s Blog</title>
                 
 
         <!-- Custom HTML head -->
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Emacs_dired.html"><strong aria-hidden="true">2.</strong> Emacs的文件管理器</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 数据结构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Heap_Sort.html"><strong aria-hidden="true">3.1.</strong> 堆</a></li><li class="chapter-item expanded "><a href="Binary_Search_Trees.html"><strong aria-hidden="true">3.2.</strong> 二叉搜索树</a></li><li class="chapter-item expanded "><a href="AVL_Tree.html"><strong aria-hidden="true">3.3.</strong> AVL树</a></li></ol></li><li class="chapter-item expanded "><a href="ffmpeg_convert.html"><strong aria-hidden="true">4.</strong> FFmpeg转码常用操作</a></li><li class="chapter-item expanded "><a href="VIM_Keybinding.html"><strong aria-hidden="true">5.</strong> VIM快捷键</a></li><li class="chapter-item expanded "><a href="Android_Modify_SharedPreferences.html"><strong aria-hidden="true">6.</strong> Android元气骑士修改存档解锁人物</a></li><li class="chapter-item expanded "><a href="Relaying-UDP-Broadcases.html"><strong aria-hidden="true">7.</strong> Relaying UDP broadcasts</a></li><li class="chapter-item expanded "><a href="GVM_PostgreSQL.html" class="active"><strong aria-hidden="true">8.</strong> Kali Linux升级GVM时PG数据库问题</a></li><li class="chapter-item expanded "><a href="SSL_config.html"><strong aria-hidden="true">9.</strong> SSL算法配置</a></li><li class="chapter-item expanded "><a href="XPath.html"><strong aria-hidden="true">10.</strong> XPath提取元素</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Emacs_dired.html"><strong aria-hidden="true">2.</strong> Emacs的文件管理器</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 数据结构</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Heap_Sort.html"><strong aria-hidden="true">3.1.</strong> 堆</a></li><li class="chapter-item expanded "><a href="Binary_Search_Trees.html"><strong aria-hidden="true">3.2.</strong> 二叉搜索树</a></li><li class="chapter-item expanded "><a href="AVL_Tree.html"><strong aria-hidden="true">3.3.</strong> AVL树</a></li></ol></li><li class="chapter-item expanded "><a href="ffmpeg_convert.html"><strong aria-hidden="true">4.</strong> FFmpeg转码常用操作</a></li><li class="chapter-item expanded "><a href="VIM_Keybinding.html"><strong aria-hidden="true">5.</strong> VIM快捷键</a></li><li class="chapter-item expanded "><a href="Android_Modify_SharedPreferences.html"><strong aria-hidden="true">6.</strong> Android元气骑士修改存档解锁人物</a></li><li class="chapter-item expanded "><a href="Relaying-UDP-Broadcases.html"><strong aria-hidden="true">7.</strong> Relaying UDP broadcasts</a></li><li class="chapter-item expanded "><a href="Kali_Upgrade_PostgreSQL.html" class="active"><strong aria-hidden="true">8.</strong> Kali Linux升级时PG数据库相关问题</a></li><li class="chapter-item expanded "><a href="SSL_config.html"><strong aria-hidden="true">9.</strong> SSL算法配置</a></li><li class="chapter-item expanded "><a href="XPath.html"><strong aria-hidden="true">10.</strong> XPath提取元素</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -143,8 +143,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="kali-linux升级gvm时pg数据库问题"><a class="header" href="#kali-linux升级gvm时pg数据库问题">Kali Linux升级GVM时PG数据库问题</a></h1>
-<h2 id="开门见山"><a class="header" href="#开门见山">开门见山</a></h2>
+                        <h1 id="kali-linux升级时pg数据库相关问题"><a class="header" href="#kali-linux升级时pg数据库相关问题">Kali Linux升级时PG数据库相关问题</a></h1>
+<h2 id="gvm升级问题"><a class="header" href="#gvm升级问题">GVM升级问题</a></h2>
 <p>升级Kali Linux系统后, GVM扫描器无法启动, 运行<code>gvm-check-setup</code>后提示PostgreSQL版本有问题, 如下所示:</p>
 <pre><code>gvm-check-setup 22.4.0
   Test completeness and readiness of GVM-22.4.0
@@ -178,7 +178,7 @@ Step 5: Checking Postgresql DB and user ...
         FIX: Please use pg_upgradecluster to upgrade your postgresql installation
 
  ERROR: Your GVM-22.4.0 installation is not yet complete!
-
+ 
 Please follow the instructions marked with FIX above and run this
 script again.
 </code></pre>
@@ -192,7 +192,7 @@ script again.
 <pre><code>sudo pg_upgradecluster 14 main
 </code></pre>
 <p>之后根据gvm-check-setup推荐的步骤继续进行即可</p>
-<h2 id="登陆相关"><a class="header" href="#登陆相关">登陆相关</a></h2>
+<h3 id="登录相关"><a class="header" href="#登录相关">登录相关</a></h3>
 <p>使用如下命令查看账户</p>
 <pre><code>sudo runuser -u _gvm -- gvmd --get-users
 </code></pre>
@@ -208,7 +208,19 @@ script again.
 <p>要删除 GVM 用户，可以运行以下命令</p>
 <pre><code>sudo runuser -u _gvm -- gvmd --delete-user=USER
 </code></pre>
-<p>tags: #Kali #GVM</p>
+<h2 id="metasploit升级问题"><a class="header" href="#metasploit升级问题">Metasploit升级问题</a></h2>
+<pre><code>DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.37.
+
+HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE msf REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+</code></pre>
+<p>修复方式:</p>
+<pre><code>sudo -u postgres psql -U postgres -d msf
+
+REINDEX DATABASE msf;
+
+ALTER DATABASE msf REFRESH COLLATION VERSION;
+</code></pre>
+<p>tags: #Kali #PostgreSQL</p>
 
                     </main>
 
