@@ -172,6 +172,9 @@
 
                 <div id="content" class="content">
                     <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
                         <h1 id="relaying-udp-broadcasts"><a class="header" href="#relaying-udp-broadcasts">Relaying UDP broadcasts</a></h1>
 <p>文章类型为转载<sup class="footnote-reference"><a href="#1">1</a></sup></p>
 <pre><code class="language-shell">iptables -t mangle -A INPUT -i eth0 -d 255.255.255.255 -j TEE --gateway 10.1.1.255
