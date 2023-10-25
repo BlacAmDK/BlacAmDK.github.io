@@ -16,10 +16,16 @@ jobs:
         uses: actions/checkout@v2
     
       - name: curl mdbook.tar.gz
-        run: curl -L https://github.com/rust-lang/mdBook/releases/download/v0.4.12/mdbook-v0.4.12-x86_64-unknown-linux-gnu.tar.gz > ./mdbook.tar.gz
-
-      - name: tar mdbook
-        run: tar -zxvf ./mdbook.tar.gz
+        run: curl -L https://github.com/rust-lang/mdBook/releases/download/v0.4.35/mdbook-v0.4.35-x86_64-unknown-linux-gnu.tar.gz > ./mdbook.tar.gz
+                     
+      - name: curl mdbook-pagetoc.tar.gz
+        run: curl -L https://github.com/BlacAmDK/mdBook-pagetoc/archive/refs/heads/master.zip > ./mdbook-pagetoc.zip
+                     
+      - name: extract mdbook
+        run: tar -axvf ./mdbook.tar.gz
+      
+      - name: extract mdbook-pagetoc
+        run: unzip mdbook-pagetoc.zip mdBook-pagetoc-master/theme/index.hbs mdBook-pagetoc-master/sidebar.js mdBook-pagetoc-master/style.css && mv mdBook-pagetoc-master/* .
       
       - name: mdbook build
         run: ./mdbook build
